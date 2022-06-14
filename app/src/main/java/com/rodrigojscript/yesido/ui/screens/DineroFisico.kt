@@ -1,6 +1,7 @@
-package com.rodrigojscript.yesido
+package com.rodrigojscript.yesido.ui.screens
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Button
 import androidx.compose.material.Scaffold
@@ -9,15 +10,14 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.rodrigojscript.yesido.ui.components.CustomCard
-import com.rodrigojscript.yesido.ui.components.CustomTextField
 import com.rodrigojscript.yesido.ui.theme.BaseAppTheme
 
 var dineroFisico: Double = 0.0
 
 @Composable
-fun DineroFisico() {
+fun DineroFisico(navController: NavController) {
     var numberMil by remember { mutableStateOf("0") }
     var numberQui by remember { mutableStateOf("0") }
     var numberDoc by remember { mutableStateOf("0") }
@@ -96,9 +96,9 @@ fun DineroFisico() {
                     }) {
                         Text(text = "Suma")
                     }
-
+                    //TODO: agregar boton para limpiar todo
                     Text(text = dineroFisicoTotal)
-                    Button(onClick = { /*TODO: Envia la variable dinero fisico total y la usa en la siguiente pantalla*/ }) {
+                    Button(onClick = { navController.navigate("dineronotas") }) {
                         Text(text = "Siguiente")
                     }
                 }
