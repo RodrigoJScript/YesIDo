@@ -119,7 +119,25 @@ fun DineroNotas(navController: NavController) {
                     }) {
                         Text(text = "Calcular")
                     }
-                    //TODO: agregar boton para limpiar todo
+                    Button(onClick = {
+                        nota1 = "0"
+                        nota2 = "0"
+                        nota3 = "0"
+                        nota4 = "0"
+                        nota5 = "0"
+                        nota6 = "0"
+                        nota7 = "0"
+                        nota8 = "0"
+                        nota9 = "0"
+                        nota10 = "0"
+                        nota11 = "0"
+                        nota12 = "0"
+                        nota13 = "0"
+                        nota14 = "0"
+                        nota15 = "0"
+                    }) {
+                        Text(text = "Limpiar")
+                    }
                     var colors: Color = Color.Green
                     colors = if (dineroTotal == "0.0") {
                         Color.Green
