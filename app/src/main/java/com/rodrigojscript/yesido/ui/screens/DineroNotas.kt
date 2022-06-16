@@ -19,7 +19,7 @@ import com.rodrigojscript.yesido.ui.theme.BaseAppTheme
 var dineroNotas: Double = 0.0
 
 @Composable
-fun DineroNotas() {
+fun DineroNotas(navController: NavController) {
     var nota1 by remember { mutableStateOf("0") }
     var nota2 by remember { mutableStateOf("0") }
     var nota3 by remember { mutableStateOf("0") }
@@ -36,7 +36,7 @@ fun DineroNotas() {
     var nota14 by remember { mutableStateOf("0") }
     var nota15 by remember { mutableStateOf("0") }
 
-    var dineroTotal by remember { mutableStateOf("") }
+    var dineroTotal by remember { mutableStateOf("0.0") }
     BaseAppTheme {
         Scaffold(topBar = {
             TopAppBar(
@@ -119,8 +119,27 @@ fun DineroNotas() {
                     }) {
                         Text(text = "Calcular")
                     }
-                    //TODO: agregar boton para limpiar todo
-                    val colors: Color = if (dineroTotal == "0.0") {
+                    Button(onClick = {
+                        nota1 = "0"
+                        nota2 = "0"
+                        nota3 = "0"
+                        nota4 = "0"
+                        nota5 = "0"
+                        nota6 = "0"
+                        nota7 = "0"
+                        nota8 = "0"
+                        nota9 = "0"
+                        nota10 = "0"
+                        nota11 = "0"
+                        nota12 = "0"
+                        nota13 = "0"
+                        nota14 = "0"
+                        nota15 = "0"
+                    }) {
+                        Text(text = "Limpiar")
+                    }
+                    var colors: Color = Color.Green
+                    colors = if (dineroTotal == "0.0") {
                         Color.Green
                     } else {
                         Color.Red

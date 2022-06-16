@@ -96,9 +96,39 @@ fun DineroFisico(navController: NavController) {
                     }) {
                         Text(text = "Suma")
                     }
-                    //TODO: agregar boton para limpiar todo
+                    Button(onClick = {
+                        numberMil = "0"
+                        numberQui = "0"
+                        numberDoc = "0"
+                        numberCie = "0"
+                        numberCin = "0"
+                        numberVei = "0"
+                        numberDie = "0"
+                        numberCco = "0"
+                        numberDos = "0"
+                        numberUno = "0"
+                        numberCen = "0"
+                    }) {
+                        Text(text = "Limpiar")
+                    }
                     Text(text = dineroFisicoTotal)
-                    Button(onClick = { navController.navigate("dineronotas") }) {
+                    Button(onClick = {
+                        val nMil = numberMil.toDouble() * 1000
+                        val nQui = numberQui.toDouble() * 500
+                        val nDoc = numberDoc.toDouble() * 200
+                        val nCie = numberCie.toDouble() * 100
+                        val nCin = numberCin.toDouble() * 50
+                        val nVei = numberVei.toDouble() * 20
+                        val nDie = numberDie.toDouble() * 10
+                        val nCco = numberCco.toDouble() * 5
+                        val nDos = numberDos.toDouble() * 2
+                        val nUno = numberUno.toDouble() * 1
+                        val nCen = numberCen.toDouble() * 0.5
+                        dineroFisico =
+                            nMil + nQui + nDoc + nCie + nCin + nVei + nDie + nCco + nDos + nUno + nCen
+                        dineroFisicoTotal = dineroFisico.toString()
+                        navController.navigate("dineronotas")
+                    }) {
                         Text(text = "Siguiente")
                     }
                 }
