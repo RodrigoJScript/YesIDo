@@ -17,7 +17,9 @@ fun CustomTextField(number: String, onChange: onChange) {
     TextField(
         keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
         value = number,
-        modifier = Modifier.padding(8.dp),
+        modifier = Modifier
+            .padding(8.dp)
+            .padding(top = 14.dp),
         singleLine = true,
         shape = MaterialTheme.shapes.medium,
         onValueChange = { onChange(it) },

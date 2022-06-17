@@ -11,7 +11,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
-import com.rodrigojscript.yesido.ui.components.CustomCard
+import com.rodrigojscript.yesido.R
+import com.rodrigojscript.yesido.ui.components.CustomCardFisico
 import com.rodrigojscript.yesido.ui.theme.BaseAppTheme
 
 var dineroFisico: Double = 0.0
@@ -45,37 +46,37 @@ fun DineroFisico(navController: NavController) {
                     )
             ) {
                 item {
-                    CustomCard(nmb = numberMil, title = "$1000") {
+                    CustomCardFisico(nmb = numberMil, image = R.drawable.mil) {
                         numberMil = it
                     }
-                    CustomCard(nmb = numberQui, title = "$500") {
+                    CustomCardFisico(nmb = numberQui, image = R.drawable.qui) {
                         numberQui = it
                     }
-                    CustomCard(nmb = numberDoc, title = "$200") {
+                    CustomCardFisico(nmb = numberDoc, image = R.drawable.doc) {
                         numberDoc = it
                     }
-                    CustomCard(nmb = numberCie, title = "$100") {
+                    CustomCardFisico(nmb = numberCie, image = R.drawable.cien) {
                         numberCie = it
                     }
-                    CustomCard(nmb = numberCin, title = "$50") {
+                    CustomCardFisico(nmb = numberCin, image = R.drawable.cin) {
                         numberCin = it
                     }
-                    CustomCard(nmb = numberVei, title = "$20") {
+                    CustomCardFisico(nmb = numberVei, image = R.drawable.vei) {
                         numberVei = it
                     }
-                    CustomCard(nmb = numberDie, title = "$10") {
+                    CustomCardFisico(nmb = numberDie, image = R.drawable.die) {
                         numberDie = it
                     }
-                    CustomCard(nmb = numberCco, title = "$5") {
+                    CustomCardFisico(nmb = numberCco, image = R.drawable.cco) {
                         numberCco = it
                     }
-                    CustomCard(nmb = numberDos, title = "$2") {
+                    CustomCardFisico(nmb = numberDos, image = R.drawable.dos) {
                         numberDos = it
                     }
-                    CustomCard(nmb = numberUno, title = "$1") {
+                    CustomCardFisico(nmb = numberUno, image = R.drawable.uno) {
                         numberUno = it
                     }
-                    CustomCard(nmb = numberCen, title = "$0.5") {
+                    CustomCardFisico(nmb = numberCen, image = R.drawable.cen) {
                         numberCen = it
                     }
                     Button(onClick = {

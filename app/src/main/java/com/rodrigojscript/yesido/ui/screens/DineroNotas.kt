@@ -12,7 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
-import com.rodrigojscript.yesido.ui.components.CustomCard
+import com.rodrigojscript.yesido.ui.components.CustomCardNotas
 import com.rodrigojscript.yesido.ui.theme.BaseAppTheme
 
 
@@ -52,49 +52,49 @@ fun DineroNotas(navController: NavController) {
                     )
             ) {
                 item {
-                    CustomCard(nmb = nota1, title = "Nota 1") {
+                    CustomCardNotas(nmb = nota1, title = "Nota 1") {
                         nota1 = it
                     }
-                    CustomCard(nmb = nota2, title = "Nota 2") {
+                    CustomCardNotas(nmb = nota2, title = "Nota 2") {
                         nota2 = it
                     }
-                    CustomCard(nmb = nota3, title = "Nota 3") {
+                    CustomCardNotas(nmb = nota3, title = "Nota 3") {
                         nota3 = it
                     }
-                    CustomCard(nmb = nota4, title = "Nota 4") {
+                    CustomCardNotas(nmb = nota4, title = "Nota 4") {
                         nota4 = it
                     }
-                    CustomCard(nmb = nota5, title = "Nota 5") {
+                    CustomCardNotas(nmb = nota5, title = "Nota 5") {
                         nota5 = it
                     }
-                    CustomCard(nmb = nota6, title = "Nota 6") {
+                    CustomCardNotas(nmb = nota6, title = "Nota 6") {
                         nota6 = it
                     }
-                    CustomCard(nmb = nota7, title = "Nota 7") {
+                    CustomCardNotas(nmb = nota7, title = "Nota 7") {
                         nota7 = it
                     }
-                    CustomCard(nmb = nota8, title = "Nota 8") {
+                    CustomCardNotas(nmb = nota8, title = "Nota 8") {
                         nota8 = it
                     }
-                    CustomCard(nmb = nota9, title = "Nota 9") {
+                    CustomCardNotas(nmb = nota9, title = "Nota 9") {
                         nota9 = it
                     }
-                    CustomCard(nmb = nota10, title = "Nota 10") {
+                    CustomCardNotas(nmb = nota10, title = "Nota 10") {
                         nota10 = it
                     }
-                    CustomCard(nmb = nota11, title = "Nota 11") {
+                    CustomCardNotas(nmb = nota11, title = "Nota 11") {
                         nota11 = it
                     }
-                    CustomCard(nmb = nota12, title = "Nota 12") {
+                    CustomCardNotas(nmb = nota12, title = "Nota 12") {
                         nota12 = it
                     }
-                    CustomCard(nmb = nota13, title = "Nota 13") {
+                    CustomCardNotas(nmb = nota13, title = "Nota 13") {
                         nota13 = it
                     }
-                    CustomCard(nmb = nota14, title = "Nota 14") {
+                    CustomCardNotas(nmb = nota14, title = "Nota 14") {
                         nota14 = it
                     }
-                    CustomCard(nmb = nota15, title = "Nota 15") {
+                    CustomCardNotas(nmb = nota15, title = "Nota 15") {
                         nota15 = it
                     }
                     Button(onClick = {
