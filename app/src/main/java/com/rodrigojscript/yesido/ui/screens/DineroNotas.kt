@@ -3,10 +3,9 @@ package com.rodrigojscript.yesido.ui.screens
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Button
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,8 +39,16 @@ fun DineroNotas(navController: NavController) {
     BaseAppTheme {
         Scaffold(topBar = {
             TopAppBar(
-                title = { Text(text = "Dinero Notas") }
-            )
+                title = { Text(text = "Dinero Notas") }, navigationIcon = {
+                    IconButton(
+                        onClick = {
+                            navController.popBackStack()
+                        },
+
+                        ) {
+                       Icon(Icons.Filled.ArrowBack, contentDescription = null)
+                    }
+                })
         }, content = { innerPaddings ->
             LazyColumn(
                 horizontalAlignment = Alignment.CenterHorizontally,

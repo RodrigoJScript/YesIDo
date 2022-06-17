@@ -20,6 +20,7 @@ class MainActivity : ComponentActivity() {
                 composable("dinerofisico") { DineroFisico(navController) }
                 composable("dineronotas") { DineroNotas(navController) }
             }
+            //TODO: HotFix Agregar null safety
         }
     }
 }
