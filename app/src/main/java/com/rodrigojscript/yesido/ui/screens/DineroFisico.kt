@@ -3,13 +3,13 @@ package com.rodrigojscript.yesido.ui.screens
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Button
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 import com.rodrigojscript.yesido.R
 import com.rodrigojscript.yesido.ui.components.CustomCardFisico
@@ -31,10 +31,20 @@ fun DineroFisico(navController: NavController) {
     var numberUno by remember { mutableStateOf("0") }
     var numberCen by remember { mutableStateOf("0") }
     var dineroFisicoTotal by remember { mutableStateOf("0") }
+    var dineroTotal by remember { mutableStateOf("0.1") }
     BaseAppTheme {
         Scaffold(topBar = {
             TopAppBar(
-                title = { Text(text = "Dinero fisico") }
+                title = { Text(text = "Dinero fisico") }, navigationIcon = {
+                    IconButton(
+                        onClick = {
+                            navController.popBackStack()
+                        },
+
+                        ) {
+                        Icon(Icons.Filled.ArrowBack, contentDescription = null)
+                    }
+                }
             )
         }, content = { innerPaddings ->
             LazyColumn(
@@ -94,6 +104,7 @@ fun DineroFisico(navController: NavController) {
                         dineroFisico =
                             nMil + nQui + nDoc + nCie + nCin + nVei + nDie + nCco + nDos + nUno + nCen
                         dineroFisicoTotal = dineroFisico.toString()
+                        dineroTotal = (dineroNotas - dineroFisico).toString()
                     }) {
                         Text(text = "Suma")
                     }
@@ -109,28 +120,34 @@ fun DineroFisico(navController: NavController) {
                         numberDos = "0"
                         numberUno = "0"
                         numberCen = "0"
+                        dineroFisicoTotal = "0"
+                        dineroTotal = "0"
                     }) {
                         Text(text = "Limpiar")
                     }
-                    Text(text = dineroFisicoTotal)
-                    Button(onClick = {
-                        val nMil = numberMil.toDouble() * 1000
-                        val nQui = numberQui.toDouble() * 500
-                        val nDoc = numberDoc.toDouble() * 200
-                        val nCie = numberCie.toDouble() * 100
-                        val nCin = numberCin.toDouble() * 50
-                        val nVei = numberVei.toDouble() * 20
-                        val nDie = numberDie.toDouble() * 10
-                        val nCco = numberCco.toDouble() * 5
-                        val nDos = numberDos.toDouble() * 2
-                        val nUno = numberUno.toDouble() * 1
-                        val nCen = numberCen.toDouble() * 0.5
-                        dineroFisico =
-                            nMil + nQui + nDoc + nCie + nCin + nVei + nDie + nCco + nDos + nUno + nCen
-                        dineroFisicoTotal = dineroFisico.toString()
-                        navController.navigate("dineronotas")
-                    }) {
-                        Text(text = "Siguiente")
+                    Text(text = "Dinero Fisico total $dineroFisicoTotal")
+                    val colors: Color = if (dineroTotal.toDouble() < 0.0) {
+                        Color.Green
+                    }
+                    else if(dineroTotal.toDouble() > 0.1) {
+                        Color.Red
+                    }else{
+                        Color.Black
+                    }
+                    val explicito:String = if (dineroTotal.toDouble() < 0.0) {
+                        "Ganaste"
+                    }
+                    else if(dineroTotal.toDouble() > 0.1) {
+                        "Perdiste"
+                    }else if(dineroTotal.toDouble() == 0.1){
+                        "Esperando cuenta"
+                    }else {
+                        "Todo Cuadra"
+                    }
+                    if (dineroTotal == "0.1"){
+                     Text(text ="Esperando cuenta")
+                    }else{
+                        Text(text = "Dinero Total del dia: $explicito $dineroTotal", color = colors)
                     }
                 }
             }

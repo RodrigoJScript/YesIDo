@@ -35,20 +35,13 @@ fun DineroNotas(navController: NavController) {
     var nota14 by remember { mutableStateOf("0") }
     var nota15 by remember { mutableStateOf("0") }
 
-    var dineroTotal by remember { mutableStateOf("0.0") }
+    var dineroTotalNotas by remember {
+        mutableStateOf("0.0")
+    }
     BaseAppTheme {
         Scaffold(topBar = {
             TopAppBar(
-                title = { Text(text = "Dinero Notas") }, navigationIcon = {
-                    IconButton(
-                        onClick = {
-                            navController.popBackStack()
-                        },
-
-                        ) {
-                       Icon(Icons.Filled.ArrowBack, contentDescription = null)
-                    }
-                })
+                title = { Text(text = "Dinero Notas") })
         }, content = { innerPaddings ->
             LazyColumn(
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -122,9 +115,12 @@ fun DineroNotas(navController: NavController) {
                         val no15 = nota15.toDouble()
                         dineroNotas =
                             no1 + no2 + no3 + no4 + no5 + no6 + no7 + no8 + no9 + no10 + no11 + no12 + no13 + no14 + no15
-                        dineroTotal = (dineroFisico - dineroNotas).toString()
+                            dineroTotalNotas = dineroNotas.toString()
                     }) {
                         Text(text = "Calcular")
+                    }
+                    Button(onClick = { navController.navigate("dinerofisico")}) {
+                        Text(text ="Siguiente")
                     }
                     Button(onClick = {
                         nota1 = "0"
@@ -142,16 +138,11 @@ fun DineroNotas(navController: NavController) {
                         nota13 = "0"
                         nota14 = "0"
                         nota15 = "0"
+                        dineroTotalNotas = "0.0"
                     }) {
                         Text(text = "Limpiar")
                     }
-                    var colors: Color = Color.Green
-                    colors = if (dineroTotal == "0.0") {
-                        Color.Green
-                    } else {
-                        Color.Red
-                    }
-                    Text(text = dineroTotal, color = colors)
+                    Text(text ="Dinero total de notas: $dineroTotalNotas")
                 }
             }
         })
