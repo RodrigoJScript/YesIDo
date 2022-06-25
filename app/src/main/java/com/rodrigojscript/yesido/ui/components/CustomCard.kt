@@ -10,7 +10,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rodrigojscript.yesido.R
 
-//TODO: Añadir una imagen en lugar del texto
 @Composable
 fun CustomCardFisico(nmb: String, image: Int, onChange: onChange) {
     Row(

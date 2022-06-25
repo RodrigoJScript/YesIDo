@@ -16,10 +16,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val navController = rememberNavController()
-            NavHost(navController = navController, startDestination = "dinerofisico") {
+            NavHost(navController = navController, startDestination = "dineronotas") {
                 composable("dinerofisico") { DineroFisico(navController) }
                 composable("dineronotas") { DineroNotas(navController) }
             }
+            //TODO: HotFix Agregar null safety
         }
     }
 }
