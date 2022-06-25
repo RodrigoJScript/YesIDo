@@ -30,7 +30,7 @@ fun DineroFisico(navController: NavController) {
     var numberDos by remember { mutableStateOf("0") }
     var numberUno by remember { mutableStateOf("0") }
     var numberCen by remember { mutableStateOf("0") }
-    var dineroFisicoTotal by remember { mutableStateOf("0") }
+    var dineroFisicoTotal by remember { mutableStateOf("0.0") }
     var dineroTotal by remember { mutableStateOf("0.1") }
     BaseAppTheme {
         Scaffold(topBar = {
@@ -104,7 +104,7 @@ fun DineroFisico(navController: NavController) {
                         dineroFisico =
                             nMil + nQui + nDoc + nCie + nCin + nVei + nDie + nCco + nDos + nUno + nCen
                         dineroFisicoTotal = dineroFisico.toString()
-                        dineroTotal = (dineroNotas - dineroFisico).toString()
+                        dineroTotal = (dineroFisico - dineroNotas).toString()
                     }) {
                         Text(text = "Suma")
                     }
@@ -125,19 +125,20 @@ fun DineroFisico(navController: NavController) {
                     }) {
                         Text(text = "Limpiar")
                     }
+                    Text(text = "Dinero Notas total $dineroNotas")
                     Text(text = "Dinero Fisico total $dineroFisicoTotal")
-                    val colors: Color = if (dineroTotal.toDouble() < 0.0) {
+                    val colors: Color = if (dineroTotal.toDouble() > 0.1) {
                         Color.Green
                     }
-                    else if(dineroTotal.toDouble() > 0.1) {
+                    else if(dineroTotal.toDouble() < 0.0) {
                         Color.Red
                     }else{
                         Color.Black
                     }
-                    val explicito:String = if (dineroTotal.toDouble() < 0.0) {
+                    val explicito:String = if (dineroTotal.toDouble() > 0.1) {
                         "Ganaste"
                     }
-                    else if(dineroTotal.toDouble() > 0.1) {
+                    else if(dineroTotal.toDouble() < 0.0) {
                         "Perdiste"
                     }else if(dineroTotal.toDouble() == 0.1){
                         "Esperando cuenta"
