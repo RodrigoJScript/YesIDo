@@ -1,7 +1,6 @@
 package com.rodrigojscript.yesido.ui.screens
 
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -10,6 +9,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.rodrigojscript.yesido.ui.components.CustomCardNotas
 import com.rodrigojscript.yesido.ui.theme.BaseAppTheme
@@ -97,32 +98,39 @@ fun DineroNotas(navController: NavController) {
                     CustomCardNotas(nmb = nota15, title = "Nota 15") {
                         nota15 = it
                     }
-                    Button(onClick = {
-                        val no1 = nota1.toDouble()
-                        val no2 = nota2.toDouble()
-                        val no3 = nota3.toDouble()
-                        val no4 = nota4.toDouble()
-                        val no5 = nota5.toDouble()
-                        val no6 = nota6.toDouble()
-                        val no7 = nota7.toDouble()
-                        val no8 = nota8.toDouble()
-                        val no9 = nota9.toDouble()
-                        val no10 = nota10.toDouble()
-                        val no11 = nota11.toDouble()
-                        val no12 = nota12.toDouble()
-                        val no13 = nota13.toDouble()
-                        val no14 = nota14.toDouble()
-                        val no15 = nota15.toDouble()
-                        dineroNotas =
-                            no1 + no2 + no3 + no4 + no5 + no6 + no7 + no8 + no9 + no10 + no11 + no12 + no13 + no14 + no15
+                    Row(
+                        modifier = Modifier
+                            .padding(8.dp)
+                            .fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        Button(modifier = Modifier.padding(8.dp),onClick = {
+                            val no1 = nota1.toDouble()
+                            val no2 = nota2.toDouble()
+                            val no3 = nota3.toDouble()
+                            val no4 = nota4.toDouble()
+                            val no5 = nota5.toDouble()
+                            val no6 = nota6.toDouble()
+                            val no7 = nota7.toDouble()
+                            val no8 = nota8.toDouble()
+                            val no9 = nota9.toDouble()
+                            val no10 = nota10.toDouble()
+                            val no11 = nota11.toDouble()
+                            val no12 = nota12.toDouble()
+                            val no13 = nota13.toDouble()
+                            val no14 = nota14.toDouble()
+                            val no15 = nota15.toDouble()
+                            dineroNotas =
+                                no1 + no2 + no3 + no4 + no5 + no6 + no7 + no8 + no9 + no10 + no11 + no12 + no13 + no14 + no15
                             dineroTotalNotas = dineroNotas.toString()
-                    }) {
-                        Text(text = "Calcular")
+                        }) {
+                            Text(text = "Calcular", fontSize = 20.sp)
+                        }
+                        Button(modifier = Modifier.padding(8.dp),onClick = { navController.navigate("dinerofisico")}) {
+                            Text(text ="Siguiente", fontSize = 20.sp)
+                        }
                     }
-                    Button(onClick = { navController.navigate("dinerofisico")}) {
-                        Text(text ="Siguiente")
-                    }
-                    Button(onClick = {
+                    Button(modifier = Modifier.padding(bottom = 8.dp),onClick = {
                         nota1 = "0"
                         nota2 = "0"
                         nota3 = "0"
@@ -140,9 +148,9 @@ fun DineroNotas(navController: NavController) {
                         nota15 = "0"
                         dineroTotalNotas = "0.0"
                     }) {
-                        Text(text = "Limpiar")
+                        Text(text = "Limpiar", fontSize = 20.sp)
                     }
-                    Text(text ="Dinero total de notas: $dineroTotalNotas")
+                    Text(text ="Dinero total de notas: $dineroTotalNotas", fontSize = 20.sp)
                 }
             }
         })

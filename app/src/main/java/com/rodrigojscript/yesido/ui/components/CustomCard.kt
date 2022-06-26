@@ -13,7 +13,7 @@ import com.rodrigojscript.yesido.R
 @Composable
 fun CustomCardFisico(nmb: String, image: Int, onChange: onChange) {
     Row(
-        modifier = Modifier.padding(4.dp),
+        modifier = Modifier.padding(2.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Image(
@@ -31,7 +31,7 @@ fun CustomCardFisico(nmb: String, image: Int, onChange: onChange) {
 @Composable
 fun CustomCardNotas(nmb: String, title: String, onChange: onChange) {
     Row(
-        modifier = Modifier.padding(4.dp),
+        modifier = Modifier.padding(2.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(text = title)
