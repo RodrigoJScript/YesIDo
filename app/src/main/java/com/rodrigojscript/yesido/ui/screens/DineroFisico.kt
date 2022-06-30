@@ -6,6 +6,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,17 +24,17 @@ var dineroFisico: Double = 0.0
 
 @Composable
 fun DineroFisico(navController: NavController) {
-    var numberMil by remember { mutableStateOf("0") }
-    var numberQui by remember { mutableStateOf("0") }
-    var numberDoc by remember { mutableStateOf("0") }
-    var numberCie by remember { mutableStateOf("0") }
-    var numberCin by remember { mutableStateOf("0") }
-    var numberVei by remember { mutableStateOf("0") }
-    var numberDie by remember { mutableStateOf("0") }
-    var numberCco by remember { mutableStateOf("0") }
-    var numberDos by remember { mutableStateOf("0") }
-    var numberUno by remember { mutableStateOf("0") }
-    var numberCen by remember { mutableStateOf("0") }
+    var numberMil by rememberSaveable { mutableStateOf("0") }
+    var numberQui by rememberSaveable { mutableStateOf("0") }
+    var numberDoc by rememberSaveable { mutableStateOf("0") }
+    var numberCie by rememberSaveable { mutableStateOf("0") }
+    var numberCin by rememberSaveable { mutableStateOf("0") }
+    var numberVei by rememberSaveable { mutableStateOf("0") }
+    var numberDie by rememberSaveable { mutableStateOf("0") }
+    var numberCco by rememberSaveable { mutableStateOf("0") }
+    var numberDos by rememberSaveable { mutableStateOf("0") }
+    var numberUno by rememberSaveable { mutableStateOf("0") }
+    var numberCen by rememberSaveable { mutableStateOf("0") }
     var dineroFisicoTotal by remember { mutableStateOf("0.0") }
     var dineroTotal by remember { mutableStateOf("0.1") }
     BaseAppTheme {
@@ -93,7 +94,12 @@ fun DineroFisico(navController: NavController) {
                     CustomCardFisico(nmb = numberCen, image = R.drawable.cen) {
                         numberCen = it
                     }
-                    Row (modifier= Modifier.padding(8.dp).fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+                    Row(
+                        modifier = Modifier
+                            .padding(8.dp)
+                            .fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Center
+                    ) {
                         Button(modifier = Modifier.padding(end = 8.dp), onClick = {
                             val nMil = numberMil.toDouble() * 1000
                             val nQui = numberQui.toDouble() * 500
@@ -131,30 +137,46 @@ fun DineroFisico(navController: NavController) {
                             Text(text = "Limpiar", fontSize = 20.sp)
                         }
                     }
-                    Text(text = "Dinero Notas total $dineroNotas", modifier = Modifier.padding(4.dp), fontSize = 20.sp)
-                    Text(text = "Dinero Fisico total $dineroFisicoTotal", modifier = Modifier.padding(4.dp), fontSize = 20.sp)
+                    Text(
+                        text = "Dinero Notas total $dineroNotas",
+                        modifier = Modifier.padding(4.dp),
+                        fontSize = 20.sp
+                    )
+                    Text(
+                        text = "Dinero Fisico total $dineroFisicoTotal",
+                        modifier = Modifier.padding(4.dp),
+                        fontSize = 20.sp
+                    )
                     val colors: Color = if (dineroTotal.toDouble() > 0.1) {
                         Color.Green
-                    }
-                    else if(dineroTotal.toDouble() < 0.0) {
+                    } else if (dineroTotal.toDouble() < 0.0) {
                         Color.Red
-                    }else{
+                    } else {
                         Color.Black
                     }
-                    val explicito:String = if (dineroTotal.toDouble() > 0.1) {
+                    val explicito: String = if (dineroTotal.toDouble() > 0.1) {
                         "Ganaste"
-                    }
-                    else if(dineroTotal.toDouble() < 0.0) {
+                    } else if (dineroTotal.toDouble() < 0.0) {
                         "Perdiste"
-                    }else if(dineroTotal.toDouble() == 0.1){
+                    } else if (dineroTotal.toDouble() == 0.1) {
                         "Esperando cuenta"
-                    }else {
+                    } else {
                         "Todo Cuadra"
                     }
-                    if (dineroTotal == "0.1"){
-                     Text(text ="Esperando cuenta", modifier = Modifier.padding(4.dp), fontSize = 20.sp)
-                    }else{
-                        Text(text = "Dinero Total del dia: $explicito $dineroTotal", color = colors, textDecoration = TextDecoration.Underline, modifier = Modifier.padding(4.dp), fontSize = 20.sp)
+                    if (dineroTotal == "0.1") {
+                        Text(
+                            text = "Esperando cuenta",
+                            modifier = Modifier.padding(4.dp),
+                            fontSize = 20.sp
+                        )
+                    } else {
+                        Text(
+                            text = "Dinero Total del dia: $explicito $dineroTotal",
+                            color = colors,
+                            textDecoration = TextDecoration.Underline,
+                            modifier = Modifier.padding(4.dp),
+                            fontSize = 20.sp
+                        )
                     }
                 }
             }
