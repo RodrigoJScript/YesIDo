@@ -6,6 +6,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,21 +21,21 @@ var dineroNotas: Double = 0.0
 
 @Composable
 fun DineroNotas(navController: NavController) {
-    var nota1 by remember { mutableStateOf("0") }
-    var nota2 by remember { mutableStateOf("0") }
-    var nota3 by remember { mutableStateOf("0") }
-    var nota4 by remember { mutableStateOf("0") }
-    var nota5 by remember { mutableStateOf("0") }
-    var nota6 by remember { mutableStateOf("0") }
-    var nota7 by remember { mutableStateOf("0") }
-    var nota8 by remember { mutableStateOf("0") }
-    var nota9 by remember { mutableStateOf("0") }
-    var nota10 by remember { mutableStateOf("0") }
-    var nota11 by remember { mutableStateOf("0") }
-    var nota12 by remember { mutableStateOf("0") }
-    var nota13 by remember { mutableStateOf("0") }
-    var nota14 by remember { mutableStateOf("0") }
-    var nota15 by remember { mutableStateOf("0") }
+    var nota1 by rememberSaveable { mutableStateOf("0") }
+    var nota2 by rememberSaveable { mutableStateOf("0") }
+    var nota3 by rememberSaveable { mutableStateOf("0") }
+    var nota4 by rememberSaveable { mutableStateOf("0") }
+    var nota5 by rememberSaveable { mutableStateOf("0") }
+    var nota6 by rememberSaveable { mutableStateOf("0") }
+    var nota7 by rememberSaveable { mutableStateOf("0") }
+    var nota8 by rememberSaveable { mutableStateOf("0") }
+    var nota9 by rememberSaveable { mutableStateOf("0") }
+    var nota10 by rememberSaveable { mutableStateOf("0") }
+    var nota11 by rememberSaveable { mutableStateOf("0") }
+    var nota12 by rememberSaveable { mutableStateOf("0") }
+    var nota13 by rememberSaveable { mutableStateOf("0") }
+    var nota14 by rememberSaveable { mutableStateOf("0") }
+    var nota15 by rememberSaveable { mutableStateOf("0") }
 
     var dineroTotalNotas by remember {
         mutableStateOf("0.0")
@@ -104,7 +105,7 @@ fun DineroNotas(navController: NavController) {
                             .fillMaxWidth(),
                         horizontalArrangement = Arrangement.Center
                     ) {
-                        Button(modifier = Modifier.padding(8.dp),onClick = {
+                        Button(modifier = Modifier.padding(8.dp), onClick = {
                             val no1 = nota1.toDouble()
                             val no2 = nota2.toDouble()
                             val no3 = nota3.toDouble()
@@ -126,11 +127,13 @@ fun DineroNotas(navController: NavController) {
                         }) {
                             Text(text = "Calcular", fontSize = 20.sp)
                         }
-                        Button(modifier = Modifier.padding(8.dp),onClick = { navController.navigate("dinerofisico")}) {
-                            Text(text ="Siguiente", fontSize = 20.sp)
+                        Button(
+                            modifier = Modifier.padding(8.dp),
+                            onClick = { navController.navigate("dinerofisico") }) {
+                            Text(text = "Siguiente", fontSize = 20.sp)
                         }
                     }
-                    Button(modifier = Modifier.padding(bottom = 8.dp),onClick = {
+                    Button(modifier = Modifier.padding(bottom = 8.dp), onClick = {
                         nota1 = "0"
                         nota2 = "0"
                         nota3 = "0"
@@ -150,7 +153,7 @@ fun DineroNotas(navController: NavController) {
                     }) {
                         Text(text = "Limpiar", fontSize = 20.sp)
                     }
-                    Text(text ="Dinero total de notas: $dineroTotalNotas", fontSize = 20.sp)
+                    Text(text = "Dinero total de notas: $dineroTotalNotas", fontSize = 20.sp)
                 }
             }
         })
