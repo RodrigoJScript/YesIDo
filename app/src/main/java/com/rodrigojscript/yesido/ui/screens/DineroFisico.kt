@@ -10,7 +10,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -18,7 +17,6 @@ import androidx.navigation.NavController
 import com.rodrigojscript.yesido.R
 import com.rodrigojscript.yesido.ui.components.CustomCardFisico
 import com.rodrigojscript.yesido.ui.theme.BaseAppTheme
-import java.time.format.TextStyle
 
 var dineroFisico: Double = 0.0
 
