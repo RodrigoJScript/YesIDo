@@ -2,14 +2,14 @@ package com.rodrigojscript.yesido.ui.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.Button
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -21,25 +21,23 @@ var dineroNotas: Double = 0.0
 
 @Composable
 fun DineroNotas(navController: NavController) {
-    var nota1 by rememberSaveable { mutableStateOf("0") }
-    var nota2 by rememberSaveable { mutableStateOf("0") }
-    var nota3 by rememberSaveable { mutableStateOf("0") }
-    var nota4 by rememberSaveable { mutableStateOf("0") }
-    var nota5 by rememberSaveable { mutableStateOf("0") }
-    var nota6 by rememberSaveable { mutableStateOf("0") }
-    var nota7 by rememberSaveable { mutableStateOf("0") }
-    var nota8 by rememberSaveable { mutableStateOf("0") }
-    var nota9 by rememberSaveable { mutableStateOf("0") }
-    var nota10 by rememberSaveable { mutableStateOf("0") }
-    var nota11 by rememberSaveable { mutableStateOf("0") }
-    var nota12 by rememberSaveable { mutableStateOf("0") }
-    var nota13 by rememberSaveable { mutableStateOf("0") }
-    var nota14 by rememberSaveable { mutableStateOf("0") }
-    var nota15 by rememberSaveable { mutableStateOf("0") }
+    var nota1 by rememberSaveable { mutableStateOf("") }
+    var nota2 by rememberSaveable { mutableStateOf("") }
+    var nota3 by rememberSaveable { mutableStateOf("") }
+    var nota4 by rememberSaveable { mutableStateOf("") }
+    var nota5 by rememberSaveable { mutableStateOf("") }
+    var nota6 by rememberSaveable { mutableStateOf("") }
+    var nota7 by rememberSaveable { mutableStateOf("") }
+    var nota8 by rememberSaveable { mutableStateOf("") }
+    var nota9 by rememberSaveable { mutableStateOf("") }
+    var nota10 by rememberSaveable { mutableStateOf("") }
+    var nota11 by rememberSaveable { mutableStateOf("") }
+    var nota12 by rememberSaveable { mutableStateOf("") }
+    var nota13 by rememberSaveable { mutableStateOf("") }
+    var nota14 by rememberSaveable { mutableStateOf("") }
+    var nota15 by rememberSaveable { mutableStateOf("") }
 
-    var dineroTotalNotas by remember {
-        mutableStateOf("0.0")
-    }
+    var dineroTotalNotas by remember { mutableStateOf("0.0") }
     BaseAppTheme {
         Scaffold(topBar = {
             TopAppBar(
@@ -106,23 +104,27 @@ fun DineroNotas(navController: NavController) {
                         horizontalArrangement = Arrangement.Center
                     ) {
                         Button(modifier = Modifier.padding(8.dp), onClick = {
-                            val no1 = nota1.toDouble()
-                            val no2 = nota2.toDouble()
-                            val no3 = nota3.toDouble()
-                            val no4 = nota4.toDouble()
-                            val no5 = nota5.toDouble()
-                            val no6 = nota6.toDouble()
-                            val no7 = nota7.toDouble()
-                            val no8 = nota8.toDouble()
-                            val no9 = nota9.toDouble()
-                            val no10 = nota10.toDouble()
-                            val no11 = nota11.toDouble()
-                            val no12 = nota12.toDouble()
-                            val no13 = nota13.toDouble()
-                            val no14 = nota14.toDouble()
-                            val no15 = nota15.toDouble()
+                            val no1: Double? = isNull(nota1)
+                            val no2: Double? = isNull(nota2)
+                            val no3: Double? = isNull(nota3)
+                            val no4: Double? = isNull(nota4)
+                            val no5: Double? = isNull(nota5)
+                            val no6: Double? = isNull(nota6)
+                            val no7: Double? = isNull(nota7)
+                            val no8: Double? = isNull(nota8)
+                            val no9: Double? = isNull(nota9)
+                            val no10: Double? = isNull(nota10)
+                            val no11: Double? = isNull(nota11)
+                            val no12: Double? = isNull(nota12)
+                            val no13: Double? = isNull(nota13)
+                            val no14: Double? = isNull(nota14)
+                            val no15: Double? = isNull(nota15)
                             dineroNotas =
-                                no1 + no2 + no3 + no4 + no5 + no6 + no7 + no8 + no9 + no10 + no11 + no12 + no13 + no14 + no15
+                                if (no1 != null && no2 != null && no3 != null && no4 != null && no5 != null && no6 != null && no7 != null && no8 != null && no9 != null && no10 != null && no11 != null && no12 != null && no13 != null && no14 != null && no15 != null) {
+                                    no1 + no2 + no3 + no4 + no5 + no6 + no7 + no8 + no9 + no10 + no11 + no12 + no13 + no14 + no15
+                                } else {
+                                    0.0
+                                }
                             dineroTotalNotas = dineroNotas.toString()
                         }) {
                             Text(text = "Calcular", fontSize = 20.sp)
@@ -134,21 +136,21 @@ fun DineroNotas(navController: NavController) {
                         }
                     }
                     Button(modifier = Modifier.padding(bottom = 8.dp), onClick = {
-                        nota1 = "0"
-                        nota2 = "0"
-                        nota3 = "0"
-                        nota4 = "0"
-                        nota5 = "0"
-                        nota6 = "0"
-                        nota7 = "0"
-                        nota8 = "0"
-                        nota9 = "0"
-                        nota10 = "0"
-                        nota11 = "0"
-                        nota12 = "0"
-                        nota13 = "0"
-                        nota14 = "0"
-                        nota15 = "0"
+                        nota1 = ""
+                        nota2 = ""
+                        nota3 = ""
+                        nota4 = ""
+                        nota5 = ""
+                        nota6 = ""
+                        nota7 = ""
+                        nota8 = ""
+                        nota9 = ""
+                        nota10 = ""
+                        nota11 = ""
+                        nota12 = ""
+                        nota13 = ""
+                        nota14 = ""
+                        nota15 = ""
                         dineroTotalNotas = "0.0"
                     }) {
                         Text(text = "Limpiar", fontSize = 20.sp)
@@ -157,5 +159,13 @@ fun DineroNotas(navController: NavController) {
                 }
             }
         })
+    }
+}
+
+fun isNull(input: String): Double? {
+    return try {
+        input.toDouble()
+    } catch (e: NumberFormatException) {
+        0.0
     }
 }

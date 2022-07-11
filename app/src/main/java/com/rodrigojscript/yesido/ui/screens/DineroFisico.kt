@@ -22,17 +22,17 @@ var dineroFisico: Double = 0.0
 
 @Composable
 fun DineroFisico(navController: NavController) {
-    var numberMil by rememberSaveable { mutableStateOf("0") }
-    var numberQui by rememberSaveable { mutableStateOf("0") }
-    var numberDoc by rememberSaveable { mutableStateOf("0") }
-    var numberCie by rememberSaveable { mutableStateOf("0") }
-    var numberCin by rememberSaveable { mutableStateOf("0") }
-    var numberVei by rememberSaveable { mutableStateOf("0") }
-    var numberDie by rememberSaveable { mutableStateOf("0") }
-    var numberCco by rememberSaveable { mutableStateOf("0") }
-    var numberDos by rememberSaveable { mutableStateOf("0") }
-    var numberUno by rememberSaveable { mutableStateOf("0") }
-    var numberCen by rememberSaveable { mutableStateOf("0") }
+    var numberMil by rememberSaveable { mutableStateOf("") }
+    var numberQui by rememberSaveable { mutableStateOf("") }
+    var numberDoc by rememberSaveable { mutableStateOf("") }
+    var numberCie by rememberSaveable { mutableStateOf("") }
+    var numberCin by rememberSaveable { mutableStateOf("") }
+    var numberVei by rememberSaveable { mutableStateOf("") }
+    var numberDie by rememberSaveable { mutableStateOf("") }
+    var numberCco by rememberSaveable { mutableStateOf("") }
+    var numberDos by rememberSaveable { mutableStateOf("") }
+    var numberUno by rememberSaveable { mutableStateOf("") }
+    var numberCen by rememberSaveable { mutableStateOf("") }
     var dineroFisicoTotal by remember { mutableStateOf("0.0") }
     var dineroTotal by remember { mutableStateOf("0.1") }
     BaseAppTheme {
@@ -99,36 +99,40 @@ fun DineroFisico(navController: NavController) {
                         horizontalArrangement = Arrangement.Center
                     ) {
                         Button(modifier = Modifier.padding(end = 8.dp), onClick = {
-                            val nMil = numberMil.toDouble() * 1000
-                            val nQui = numberQui.toDouble() * 500
-                            val nDoc = numberDoc.toDouble() * 200
-                            val nCie = numberCie.toDouble() * 100
-                            val nCin = numberCin.toDouble() * 50
-                            val nVei = numberVei.toDouble() * 20
-                            val nDie = numberDie.toDouble() * 10
-                            val nCco = numberCco.toDouble() * 5
-                            val nDos = numberDos.toDouble() * 2
-                            val nUno = numberUno.toDouble() * 1
-                            val nCen = numberCen.toDouble() * 0.5
+                            val nMil: Double? = isNullDF(numberMil, 1000.0)
+                            val nQui: Double? = isNullDF(numberQui, 500.0)
+                            val nDoc: Double? = isNullDF(numberDoc, 200.0)
+                            val nCie: Double? = isNullDF(numberCie, 100.0)
+                            val nCin: Double? = isNullDF(numberCin, 50.0)
+                            val nVei: Double? = isNullDF(numberVei, 20.0)
+                            val nDie: Double? = isNullDF(numberDie, 10.0)
+                            val nCco: Double? = isNullDF(numberCco, 5.0)
+                            val nDos: Double? = isNullDF(numberDos, 2.0)
+                            val nUno: Double? = isNullDF(numberUno, 1.0)
+                            val nCen: Double? = isNullDF(numberCen, 0.5)
                             dineroFisico =
-                                nMil + nQui + nDoc + nCie + nCin + nVei + nDie + nCco + nDos + nUno + nCen
+                                if (nMil != null && nQui != null && nDoc != null && nCie != null && nCin != null && nVei != null && nDie != null && nCco != null && nDos != null && nUno != null && nCen != null) {
+                                    nMil + nQui + nDoc + nCie + nCin + nVei + nDie + nCco + nDos + nUno + nCen
+                                } else {
+                                    0.0
+                                }
                             dineroFisicoTotal = dineroFisico.toString()
                             dineroTotal = (dineroFisico - dineroNotas).toString()
                         }) {
                             Text(text = "Suma", fontSize = 20.sp)
                         }
                         Button(modifier = Modifier.padding(start = 8.dp), onClick = {
-                            numberMil = "0"
-                            numberQui = "0"
-                            numberDoc = "0"
-                            numberCie = "0"
-                            numberCin = "0"
-                            numberVei = "0"
-                            numberDie = "0"
-                            numberCco = "0"
-                            numberDos = "0"
-                            numberUno = "0"
-                            numberCen = "0"
+                            numberMil = ""
+                            numberQui = ""
+                            numberDoc = ""
+                            numberCie = ""
+                            numberCin = ""
+                            numberVei = ""
+                            numberDie = ""
+                            numberCco = ""
+                            numberDos = ""
+                            numberUno = ""
+                            numberCen = ""
                             dineroFisicoTotal = "0"
                             dineroTotal = "0"
                         }) {
@@ -153,9 +157,9 @@ fun DineroFisico(navController: NavController) {
                         Color.Black
                     }
                     val explicito: String = if (dineroTotal.toDouble() > 0.1) {
-                        "Ganaste"
+                        "Sobran"
                     } else if (dineroTotal.toDouble() < 0.0) {
-                        "Perdiste"
+                        "Faltan"
                     } else if (dineroTotal.toDouble() == 0.1) {
                         "Esperando cuenta"
                     } else {
@@ -179,5 +183,13 @@ fun DineroFisico(navController: NavController) {
                 }
             }
         })
+    }
+}
+
+fun isNullDF(input: String, value: Double): Double? {
+    return try {
+        input.toDouble() * value
+    } catch (e: NumberFormatException) {
+        0.0
     }
 }
