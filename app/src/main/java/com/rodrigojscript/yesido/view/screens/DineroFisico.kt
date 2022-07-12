@@ -1,11 +1,13 @@
-package com.rodrigojscript.yesido.ui.screens
+package com.rodrigojscript.yesido.view.screens
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -13,15 +15,28 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.rodrigojscript.yesido.MainActivity
 import com.rodrigojscript.yesido.R
-import com.rodrigojscript.yesido.ui.components.CustomCardFisico
-import com.rodrigojscript.yesido.ui.theme.BaseAppTheme
+import com.rodrigojscript.yesido.model.database.SaldoDia
+import com.rodrigojscript.yesido.view.components.CustomCardFisico
+import com.rodrigojscript.yesido.view.theme.BaseAppTheme
+import com.rodrigojscript.yesido.viewmodel.YesViewModel
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.random.Random
+
 
 var dineroFisico: Double = 0.0
 
 @Composable
 fun DineroFisico(navController: NavController) {
+    @SuppressLint("SimpleDateFormat")
+    val sdf = SimpleDateFormat("dd/M/yyyy")
+    val currentDate: String = sdf.format(Date())
+    val model = viewModel<YesViewModel>()
+    val list: List<SaldoDia> = model.saldoDias.observeAsState(listOf()).value
     var numberMil by rememberSaveable { mutableStateOf("") }
     var numberQui by rememberSaveable { mutableStateOf("") }
     var numberDoc by rememberSaveable { mutableStateOf("") }
@@ -99,6 +114,7 @@ fun DineroFisico(navController: NavController) {
                         horizontalArrangement = Arrangement.Center
                     ) {
                         Button(modifier = Modifier.padding(end = 8.dp), onClick = {
+
                             val nMil: Double? = isNullDF(numberMil, 1000.0)
                             val nQui: Double? = isNullDF(numberQui, 500.0)
                             val nDoc: Double? = isNullDF(numberDoc, 200.0)
@@ -138,6 +154,18 @@ fun DineroFisico(navController: NavController) {
                         }) {
                             Text(text = "Limpiar", fontSize = 20.sp)
                         }
+                        Button(modifier = Modifier.padding(start = 8.dp),onClick = {
+                            navController.navigate("datitos")
+                            model.insert(
+                                SaldoDia(
+                                    id = null,
+                                    dineroFisico = dineroFisico,
+                                    dineroNotas = dineroNotas,
+                                    dineroTotal = dineroTotal.toDouble(),
+                                    fecha = currentDate
+                                )
+                            )
+                        }) { Text(text = "Guardar") }
                     }
                     Text(
                         text = "Dinero Notas total $dineroNotas",

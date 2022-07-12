@@ -1,11 +1,12 @@
-package com.rodrigojscript.yesido.ui.screens
+package com.rodrigojscript.yesido.view.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Button
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -13,8 +14,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.rodrigojscript.yesido.ui.components.CustomCardNotas
-import com.rodrigojscript.yesido.ui.theme.BaseAppTheme
+import androidx.navigation.Navigation
+import com.rodrigojscript.yesido.view.components.CustomCardNotas
+import com.rodrigojscript.yesido.view.theme.BaseAppTheme
 
 
 var dineroNotas: Double = 0.0
@@ -41,7 +43,15 @@ fun DineroNotas(navController: NavController) {
     BaseAppTheme {
         Scaffold(topBar = {
             TopAppBar(
-                title = { Text(text = "Dinero Notas") })
+                title = { Text(text = "Dinero Notas") }, navigationIcon = {
+                    IconButton(onClick = { navController.navigate("datitos") }
+                    ) {
+                        Icon(
+                            Icons.Default.Home,
+                            contentDescription = null
+                        )
+                    }
+                })
         }, content = { innerPaddings ->
             LazyColumn(
                 horizontalAlignment = Alignment.CenterHorizontally,
