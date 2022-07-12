@@ -1,4 +1,4 @@
-package com.rodrigojscript.yesido.ui.theme
+package com.rodrigojscript.yesido.view.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
