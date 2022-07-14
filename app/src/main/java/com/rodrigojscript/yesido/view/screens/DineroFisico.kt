@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.rodrigojscript.yesido.R
 import com.rodrigojscript.yesido.model.database.SaldoDia
@@ -24,6 +25,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 var dineroFisico: Double = 0.0
+var colors: Color = Color.Black
+var explicito: String = "Todo cuadra"
+
 
 @Composable
 fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
@@ -41,8 +45,8 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
     var numberDos by rememberSaveable { mutableStateOf("") }
     var numberUno by rememberSaveable { mutableStateOf("") }
     var numberCen by rememberSaveable { mutableStateOf("") }
-    var dineroFisicoTotal by remember { mutableStateOf("0.0") }
-    var dineroTotal by remember { mutableStateOf("0.1") }
+    var dineroFisicoTotal by remember { mutableStateOf("$0.0") }
+    var dineroTotal by remember { mutableStateOf("$0.0") }
     BaseAppTheme {
         Scaffold(topBar = {
             TopAppBar(
@@ -122,8 +126,9 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
                             )
                             dineroFisicoTotal = dineroFisico.toString()
                             dineroTotal = (dineroFisico - dineroNotas).toString()
+                            yesViewModel.explicidad(dineroTotal.toDouble())
                         }) {
-                            Text(text = "Suma", fontSize = 20.sp)
+                            Text(text = "Calcular", fontSize = 20.sp)
                         }
                         Button(modifier = Modifier.padding(start = 8.dp), onClick = {
                             numberMil = ""
@@ -156,46 +161,22 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
                         }) { Text(text = "Guardar") }
                     }
                     Text(
-                        text = "Dinero Notas total $dineroNotas",
+                        text = "Dinero Notas total $$dineroNotas",
                         modifier = Modifier.padding(4.dp),
                         fontSize = 20.sp
                     )
                     Text(
-                        text = "Dinero Fisico total $dineroFisicoTotal",
+                        text = "Dinero Fisico total $$dineroFisicoTotal",
                         modifier = Modifier.padding(4.dp),
                         fontSize = 20.sp
                     )
-                    val colors: Color = if (dineroTotal.toDouble() > 0.1) {
-                        Color.Green
-                    } else if (dineroTotal.toDouble() < 0.0) {
-                        Color.Red
-                    } else {
-                        Color.Black
-                    }
-                    val explicito: String = if (dineroTotal.toDouble() > 0.1) {
-                        "Sobran"
-                    } else if (dineroTotal.toDouble() < 0.0) {
-                        "Faltan"
-                    } else if (dineroTotal.toDouble() == 0.1) {
-                        "Esperando cuenta"
-                    } else {
-                        "Todo Cuadra"
-                    }
-                    if (dineroTotal == "0.1") {
-                        Text(
-                            text = "Esperando cuenta",
-                            modifier = Modifier.padding(4.dp),
-                            fontSize = 20.sp
-                        )
-                    } else {
-                        Text(
-                            text = "Dinero Total del dia: $explicito $dineroTotal",
-                            color = colors,
-                            textDecoration = TextDecoration.Underline,
-                            modifier = Modifier.padding(4.dp),
-                            fontSize = 20.sp
-                        )
-                    }
+                    Text(
+                        text = "Dinero Total del dia: $explicito $$dineroTotal",
+                        color = colors,
+                        textDecoration = TextDecoration.Underline,
+                        modifier = Modifier.padding(4.dp),
+                        fontSize = 20.sp
+                    )
                 }
             }
         })

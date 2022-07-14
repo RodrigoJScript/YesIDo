@@ -36,7 +36,7 @@ fun DineroNotas(navController: NavController, yesViewModel: YesViewModel) {
     var nota14 by rememberSaveable { mutableStateOf("") }
     var nota15 by rememberSaveable { mutableStateOf("") }
 
-    var dineroTotalNotas by remember { mutableStateOf("0.0") }
+    var dineroTotalNotas by remember { mutableStateOf("$0.0") }
     BaseAppTheme {
         Scaffold(topBar = {
             TopAppBar(
@@ -128,7 +128,7 @@ fun DineroNotas(navController: NavController, yesViewModel: YesViewModel) {
                                 n14 = nota14,
                                 n15 = nota15,
                             )
-                            dineroTotalNotas = dineroNotas.toString()
+                            dineroTotalNotas = "$$dineroNotas"
                         }) {
                             Text(text = "Calcular", fontSize = 20.sp)
                         }

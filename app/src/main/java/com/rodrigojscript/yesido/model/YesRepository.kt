@@ -1,16 +1,15 @@
 package com.rodrigojscript.yesido.model
 
 import android.app.Application
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.LiveData
 import com.rodrigojscript.yesido.model.database.SaldoDia
 import com.rodrigojscript.yesido.model.database.YesDao
 import com.rodrigojscript.yesido.model.database.YesDatabase
-import com.rodrigojscript.yesido.view.screens.dineroFisico
-import com.rodrigojscript.yesido.view.screens.dineroNotas
+import com.rodrigojscript.yesido.view.screens.*
 
 class YesRepository(application: Application) {
     private var yesDao: YesDao
-
 
 
     init {
@@ -116,11 +115,20 @@ class YesRepository(application: Application) {
         }
     }
 
-    fun getDN(): Double {
-        return dineroNotas
-    }
-
-    fun getDF(): Double {
-        return dineroFisico
+    fun explicidad(dineroT: Double) {
+        colors = if (dineroT > 0.1) {
+            Color.Green
+        } else if (dineroT < 0.0) {
+            Color.Red
+        } else {
+            Color.Black
+        }
+        explicito = if (dineroT > 0.1) {
+            "Sobran"
+        } else if (dineroT < 0.0) {
+            "Faltan"
+        } else  {
+            "Todo Cuadra"
+        }
     }
 }

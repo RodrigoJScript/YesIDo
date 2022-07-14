@@ -96,4 +96,8 @@ class YesViewModel(application: Application) : AndroidViewModel(application) {
             nota15 = n15
         )
     }
+
+    fun explicidad(dineroT: Double) {
+        yesRepository.explicidad(dineroT)
+    }
 }
