@@ -7,7 +7,6 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.*
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -15,9 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.rodrigojscript.yesido.MainActivity
 import com.rodrigojscript.yesido.R
 import com.rodrigojscript.yesido.model.database.SaldoDia
 import com.rodrigojscript.yesido.view.components.CustomCardFisico
@@ -25,18 +22,15 @@ import com.rodrigojscript.yesido.view.theme.BaseAppTheme
 import com.rodrigojscript.yesido.viewmodel.YesViewModel
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.random.Random
 
 
 var dineroFisico: Double = 0.0
 
 @Composable
-fun DineroFisico(navController: NavController) {
+fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
     @SuppressLint("SimpleDateFormat")
     val sdf = SimpleDateFormat("dd/M/yyyy")
     val currentDate: String = sdf.format(Date())
-    val model = viewModel<YesViewModel>()
-    val list: List<SaldoDia> = model.saldoDias.observeAsState(listOf()).value
     var numberMil by rememberSaveable { mutableStateOf("") }
     var numberQui by rememberSaveable { mutableStateOf("") }
     var numberDoc by rememberSaveable { mutableStateOf("") }
@@ -154,9 +148,9 @@ fun DineroFisico(navController: NavController) {
                         }) {
                             Text(text = "Limpiar", fontSize = 20.sp)
                         }
-                        Button(modifier = Modifier.padding(start = 8.dp),onClick = {
+                        Button(modifier = Modifier.padding(start = 8.dp), onClick = {
                             navController.navigate("datitos")
-                            model.insert(
+                            yesViewModel.insertSaldo(
                                 SaldoDia(
                                     id = null,
                                     dineroFisico = dineroFisico,

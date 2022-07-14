@@ -9,24 +9,17 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.rodrigojscript.yesido.R
 import com.rodrigojscript.yesido.model.database.SaldoDia
 import com.rodrigojscript.yesido.viewmodel.YesViewModel
-import java.util.*
 
 @Composable
-fun CasitaDeDatitos(navController: NavController) {
-    val scope = rememberCoroutineScope()
-    val model = viewModel<YesViewModel>()
-    val list: List<SaldoDia> = model.saldoDias.observeAsState(listOf()).value
+fun CasitaDeDatitos(navController: NavController, yesViewModel: YesViewModel) {
+    val list: List<SaldoDia> = yesViewModel.getAllSaldo().observeAsState(listOf()).value
     Scaffold(topBar = {
         TopAppBar(title = { Text(text = "Casita De Datitos") }, navigationIcon = {
             IconButton(
@@ -43,7 +36,7 @@ fun CasitaDeDatitos(navController: NavController) {
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 contentPadding = PaddingValues(vertical = 12.dp)
             ) {
-                itemsIndexed(list) { index, item ->
+                itemsIndexed(list) { _, item ->
                     Card(
                         modifier = Modifier.fillMaxWidth(),
                         backgroundColor = Color(0xFFA1CAF1)
@@ -76,7 +69,7 @@ fun CasitaDeDatitos(navController: NavController) {
                             }
 
                             Spacer(modifier = Modifier.weight(1F))
-                            IconButton(onClick = { model.delete(item) }) {
+                            IconButton(onClick = { yesViewModel.deleteSaldo(item) }) {
                                 Icon(Icons.Filled.Delete, "")
                             }
                         }

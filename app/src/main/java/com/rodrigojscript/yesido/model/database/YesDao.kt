@@ -17,6 +17,4 @@ interface YesDao {
     @Delete
     suspend fun delete(saldoDia: SaldoDia)
 
-    @Query("DELETE FROM saldodia")
-    suspend fun clear()
 }
