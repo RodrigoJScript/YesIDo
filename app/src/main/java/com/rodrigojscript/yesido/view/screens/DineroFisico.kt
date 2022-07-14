@@ -23,7 +23,6 @@ import com.rodrigojscript.yesido.viewmodel.YesViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 var dineroFisico: Double = 0.0
 
 @Composable
@@ -108,24 +107,19 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
                         horizontalArrangement = Arrangement.Center
                     ) {
                         Button(modifier = Modifier.padding(end = 8.dp), onClick = {
-
-                            val nMil: Double? = isNullDF(numberMil, 1000.0)
-                            val nQui: Double? = isNullDF(numberQui, 500.0)
-                            val nDoc: Double? = isNullDF(numberDoc, 200.0)
-                            val nCie: Double? = isNullDF(numberCie, 100.0)
-                            val nCin: Double? = isNullDF(numberCin, 50.0)
-                            val nVei: Double? = isNullDF(numberVei, 20.0)
-                            val nDie: Double? = isNullDF(numberDie, 10.0)
-                            val nCco: Double? = isNullDF(numberCco, 5.0)
-                            val nDos: Double? = isNullDF(numberDos, 2.0)
-                            val nUno: Double? = isNullDF(numberUno, 1.0)
-                            val nCen: Double? = isNullDF(numberCen, 0.5)
-                            dineroFisico =
-                                if (nMil != null && nQui != null && nDoc != null && nCie != null && nCin != null && nVei != null && nDie != null && nCco != null && nDos != null && nUno != null && nCen != null) {
-                                    nMil + nQui + nDoc + nCie + nCin + nVei + nDie + nCco + nDos + nUno + nCen
-                                } else {
-                                    0.0
-                                }
+                            yesViewModel.calcularDF(
+                                nMil = numberMil,
+                                nQui = numberQui,
+                                nDoc = numberDoc,
+                                nCie = numberCie,
+                                nCin = numberCin,
+                                nVei = numberVei,
+                                nDie = numberDie,
+                                nCco = numberCco,
+                                nDos = numberDos,
+                                nUno = numberUno,
+                                nCen = numberCen
+                            )
                             dineroFisicoTotal = dineroFisico.toString()
                             dineroTotal = (dineroFisico - dineroNotas).toString()
                         }) {
@@ -205,13 +199,5 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
                 }
             }
         })
-    }
-}
-
-fun isNullDF(input: String, value: Double): Double? {
-    return try {
-        input.toDouble() * value
-    } catch (e: NumberFormatException) {
-        0.0
     }
 }
