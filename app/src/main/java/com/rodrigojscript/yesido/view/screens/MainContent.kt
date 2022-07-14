@@ -48,18 +48,18 @@ fun CasitaDeDatitos(navController: NavController, yesViewModel: YesViewModel) {
                             Spacer(modifier = Modifier.width(12.dp))
                             Column {
                                 Text(
-                                    text = "Dinero Notas: ${item.dineroNotas}",
+                                    text = "Dinero Notas: $${item.dineroNotas}",
                                     style = MaterialTheme.typography.caption
                                 )
                                 Text(
-                                    text = "Dinero fisico: ${item.dineroFisico}",
+                                    text = "Dinero fisico: $${item.dineroFisico}",
                                     style = MaterialTheme.typography.caption
                                 )
                             }
                             Spacer(modifier = Modifier.width(12.dp))
                             Column {
                                 Text(
-                                    text = "Dinero Total: ${item.dineroTotal}",
+                                    text = "Balance: $${item.dineroTotal}",
                                     style = MaterialTheme.typography.caption
                                 )
                                 Text(
