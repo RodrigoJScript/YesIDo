@@ -14,12 +14,12 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.rodrigojscript.yesido.view.components.CustomCardNotas
 import com.rodrigojscript.yesido.view.theme.BaseAppTheme
-
+import com.rodrigojscript.yesido.viewmodel.YesViewModel
 
 var dineroNotas: Double = 0.0
 
 @Composable
-fun DineroNotas(navController: NavController) {
+fun DineroNotas(navController: NavController, yesViewModel: YesViewModel) {
     var nota1 by rememberSaveable { mutableStateOf("") }
     var nota2 by rememberSaveable { mutableStateOf("") }
     var nota3 by rememberSaveable { mutableStateOf("") }
@@ -111,27 +111,23 @@ fun DineroNotas(navController: NavController) {
                         horizontalArrangement = Arrangement.Center
                     ) {
                         Button(modifier = Modifier.padding(8.dp), onClick = {
-                            val no1: Double? = isNull(nota1)
-                            val no2: Double? = isNull(nota2)
-                            val no3: Double? = isNull(nota3)
-                            val no4: Double? = isNull(nota4)
-                            val no5: Double? = isNull(nota5)
-                            val no6: Double? = isNull(nota6)
-                            val no7: Double? = isNull(nota7)
-                            val no8: Double? = isNull(nota8)
-                            val no9: Double? = isNull(nota9)
-                            val no10: Double? = isNull(nota10)
-                            val no11: Double? = isNull(nota11)
-                            val no12: Double? = isNull(nota12)
-                            val no13: Double? = isNull(nota13)
-                            val no14: Double? = isNull(nota14)
-                            val no15: Double? = isNull(nota15)
-                            dineroNotas =
-                                if (no1 != null && no2 != null && no3 != null && no4 != null && no5 != null && no6 != null && no7 != null && no8 != null && no9 != null && no10 != null && no11 != null && no12 != null && no13 != null && no14 != null && no15 != null) {
-                                    no1 + no2 + no3 + no4 + no5 + no6 + no7 + no8 + no9 + no10 + no11 + no12 + no13 + no14 + no15
-                                } else {
-                                    0.0
-                                }
+                            yesViewModel.calcularDN(
+                                n1 = nota1,
+                                n2 = nota2,
+                                n3 = nota3,
+                                n4 = nota4,
+                                n5 = nota5,
+                                n6 = nota6,
+                                n7 = nota7,
+                                n8 = nota8,
+                                n9 = nota9,
+                                n10 = nota10,
+                                n11 = nota11,
+                                n12 = nota12,
+                                n13 = nota13,
+                                n14 = nota14,
+                                n15 = nota15,
+                            )
                             dineroTotalNotas = dineroNotas.toString()
                         }) {
                             Text(text = "Calcular", fontSize = 20.sp)
@@ -169,10 +165,4 @@ fun DineroNotas(navController: NavController) {
     }
 }
 
-fun isNull(input: String): Double? {
-    return try {
-        input.toDouble()
-    } catch (e: NumberFormatException) {
-        0.0
-    }
-}
+

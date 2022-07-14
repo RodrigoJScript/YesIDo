@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
             val navController = rememberNavController()
             NavHost(navController = navController, startDestination = "dineronotas") {
                 composable("dinerofisico") { DineroFisico(navController, yesViewModel) }
-                composable("dineronotas") { DineroNotas(navController) }
+                composable("dineronotas") { DineroNotas(navController, yesViewModel) }
                 composable("datitos") { CasitaDeDatitos(navController, yesViewModel) }
             }
 
