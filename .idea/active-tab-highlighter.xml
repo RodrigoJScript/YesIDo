@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ActiveTabHighlighterConfiguration">
+    <option name="background">
+      <PersistentColor>
+        <option name="enabled" value="true" />
+        <option name="red" value="63" />
+        <option name="green" value="38" />
+        <option name="blue" value="140" />
+      </PersistentColor>
+    </option>
+  </component>
+</project>
