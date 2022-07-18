@@ -4,14 +4,21 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.rodrigojscript.yesido.R
 import com.rodrigojscript.yesido.view.components.CustomCardNotas
 import com.rodrigojscript.yesido.view.theme.BaseAppTheme
 import com.rodrigojscript.yesido.viewmodel.YesViewModel
@@ -130,33 +137,17 @@ fun DineroNotas(navController: NavController, yesViewModel: YesViewModel) {
                             )
                             dineroTotalNotas = "$$dineroNotas"
                         }) {
+                            Icon(Icons.Filled.Add, contentDescription = null)
+                            Spacer(modifier = Modifier.padding(2.dp))
                             Text(text = "Calcular", fontSize = 20.sp)
                         }
                         Button(
                             modifier = Modifier.padding(8.dp),
                             onClick = { navController.navigate("dinerofisico") }) {
+                            Icon(Icons.Filled.ArrowForward, contentDescription = null)
+                            Spacer(modifier = Modifier.padding(2.dp))
                             Text(text = "Siguiente", fontSize = 20.sp)
                         }
-                    }
-                    Button(modifier = Modifier.padding(bottom = 8.dp), onClick = {
-                        nota1 = ""
-                        nota2 = ""
-                        nota3 = ""
-                        nota4 = ""
-                        nota5 = ""
-                        nota6 = ""
-                        nota7 = ""
-                        nota8 = ""
-                        nota9 = ""
-                        nota10 = ""
-                        nota11 = ""
-                        nota12 = ""
-                        nota13 = ""
-                        nota14 = ""
-                        nota15 = ""
-                        dineroTotalNotas = "0.0"
-                    }) {
-                        Text(text = "Limpiar", fontSize = 20.sp)
                     }
                     Text(text = "Dinero total de notas: $dineroTotalNotas", fontSize = 20.sp)
                 }
@@ -164,5 +155,4 @@ fun DineroNotas(navController: NavController, yesViewModel: YesViewModel) {
         })
     }
 }
-
 

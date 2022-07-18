@@ -5,7 +5,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Create
+import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -110,7 +113,7 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
                             .fillMaxWidth(),
                         horizontalArrangement = Arrangement.Center
                     ) {
-                        Button(modifier = Modifier.padding(end = 8.dp), onClick = {
+                        Button(modifier = Modifier.padding(end = 16.dp), onClick = {
                             yesViewModel.calcularDF(
                                 nMil = numberMil,
                                 nQui = numberQui,
@@ -128,26 +131,11 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
                             dineroTotal = (dineroFisico - dineroNotas).toString()
                             yesViewModel.explicidad(dineroTotal.toDouble())
                         }) {
+                            Icon(Icons.Filled.Add, contentDescription = null)
+                            Spacer(modifier = Modifier.padding(2.dp))
                             Text(text = "Calcular", fontSize = 20.sp)
                         }
-                        Button(modifier = Modifier.padding(start = 8.dp), onClick = {
-                            numberMil = ""
-                            numberQui = ""
-                            numberDoc = ""
-                            numberCie = ""
-                            numberCin = ""
-                            numberVei = ""
-                            numberDie = ""
-                            numberCco = ""
-                            numberDos = ""
-                            numberUno = ""
-                            numberCen = ""
-                            dineroFisicoTotal = "0"
-                            dineroTotal = "0"
-                        }) {
-                            Text(text = "Limpiar", fontSize = 20.sp)
-                        }
-                        Button(modifier = Modifier.padding(start = 8.dp), onClick = {
+                        Button(onClick = {
                             navController.navigate("datitos")
                             yesViewModel.insertSaldo(
                                 SaldoDia(
@@ -158,7 +146,11 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
                                     fecha = currentDate
                                 )
                             )
-                        }) { Text(text = "Guardar") }
+                        }) {
+                            Icon(Icons.Filled.Done, contentDescription = null)
+                            Spacer(modifier = Modifier.padding(2.dp))
+                            Text(text = "Guardar", fontSize = 20.sp)
+                        }
                     }
                     Text(
                         text = "Dinero Notas total $$dineroNotas",

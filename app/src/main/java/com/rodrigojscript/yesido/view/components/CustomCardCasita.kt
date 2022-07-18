@@ -1,5 +1,6 @@
 package com.rodrigojscript.yesido.view.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
@@ -38,10 +39,8 @@ fun CustomCardCasita(item: SaldoDia, yesViewModel: YesViewModel) {
                 orientation = Orientation.Horizontal,
             )
             .offset { IntOffset(swipeableState.offset.value.roundToInt(), 0) },
-        backgroundColor = Color(0xFFBB86FC),
         shape = MaterialTheme.shapes.medium,
-        elevation = 5.dp
-
+        elevation = 8.dp,
     ) {
         if (swipeableState.isAnimationRunning) {
             DisposableEffect(Unit) {
@@ -55,14 +54,14 @@ fun CustomCardCasita(item: SaldoDia, yesViewModel: YesViewModel) {
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.padding(10.dp))
+            Spacer(modifier = Modifier.padding(4.dp))
             Text(
                 text = " Fecha: ${item.fecha}",
                 style = MaterialTheme.typography.caption,
-                fontSize = 16.sp
+                fontSize = 24.sp
             )
             Row(
-                modifier = Modifier.padding(12.dp),
+                modifier = Modifier.padding(8.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
@@ -70,20 +69,22 @@ fun CustomCardCasita(item: SaldoDia, yesViewModel: YesViewModel) {
                 Text(
                     text = "Dinero Notas: $${item.dineroNotas}",
                     style = MaterialTheme.typography.caption,
+                    fontSize = 16.sp
                 )
 
                 Spacer(modifier = Modifier.width(10.dp))
                 Text(
                     text = "Dinero fisico: $${item.dineroFisico}",
-                    style = MaterialTheme.typography.caption
-                )
-
-                Spacer(modifier = Modifier.width(10.dp))
-                Text(
-                    text = "Balance: $${item.dineroTotal}",
-                    style = MaterialTheme.typography.caption
+                    style = MaterialTheme.typography.caption,
+                    fontSize = 16.sp
                 )
             }
+            Text(
+                modifier = Modifier.padding(bottom = 4.dp),
+                text = "Balance: $${item.dineroTotal}",
+                style = MaterialTheme.typography.caption,
+                fontSize = 16.sp
+            )
         }
     }
 }

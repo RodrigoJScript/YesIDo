@@ -3,6 +3,8 @@ package com.rodrigojscript.yesido.view.components
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -15,7 +17,7 @@ typealias onChange = (String) -> Unit
 
 @Composable
 fun CustomTextField(number: String, onChange: onChange) {
-    TextField(
+    OutlinedTextField(
         modifier = Modifier
             .padding(8.dp)
             .padding(top = 14.dp),
@@ -28,6 +30,7 @@ fun CustomTextField(number: String, onChange: onChange) {
         shape = MaterialTheme.shapes.medium,
         onValueChange = { onChange(it) },
         textStyle = MaterialTheme.typography.body1,
+        label = { Text(text = "Dinero") }
     )
 }
 
