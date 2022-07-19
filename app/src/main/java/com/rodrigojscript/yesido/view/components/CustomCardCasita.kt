@@ -3,6 +3,8 @@ package com.rodrigojscript.yesido.view.components
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Alignment
@@ -26,23 +28,7 @@ fun CustomCardCasita(item: SaldoDia, yesViewModel: YesViewModel) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .swipeable(
-                state = swipeableState,
-                anchors = anchors,
-                thresholds = { _, _ -> FractionalThreshold(0.3f) },
-                orientation = Orientation.Horizontal,
-            )
-            .offset { IntOffset(swipeableState.offset.value.roundToInt(), 0) },
-        shape = MaterialTheme.shapes.medium,
-        elevation = 8.dp,
     ) {
-        if (swipeableState.isAnimationRunning) {
-            DisposableEffect(Unit) {
-                onDispose {
-                    yesViewModel.deleteSaldo(item)
-                }
-            }
-        }
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.SpaceBetween,
@@ -72,6 +58,10 @@ fun CustomCardCasita(item: SaldoDia, yesViewModel: YesViewModel) {
                     style = MaterialTheme.typography.caption,
                     fontSize = 16.sp
                 )
+                Spacer(modifier = Modifier.weight(1F))
+                IconButton(onClick = { yesViewModel.deleteSaldo(item) }) {
+                    Icon(Icons.Filled.Delete, "")
+                }
             }
             Text(
                 modifier = Modifier.padding(bottom = 4.dp),
