@@ -5,12 +5,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Create
-import androidx.compose.material.icons.filled.Done
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -34,9 +32,6 @@ var explicito: String = "Todo cuadra"
 
 @Composable
 fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
-    @SuppressLint("SimpleDateFormat")
-    val sdf = SimpleDateFormat("dd/M/yyyy")
-    val currentDate: String = sdf.format(Date())
     var numberMil by rememberSaveable { mutableStateOf("") }
     var numberQui by rememberSaveable { mutableStateOf("") }
     var numberDoc by rememberSaveable { mutableStateOf("") }
@@ -50,13 +45,18 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
     var numberCen by rememberSaveable { mutableStateOf("") }
     var dineroFisicoTotal by remember { mutableStateOf("$0.0") }
     var dineroTotal by remember { mutableStateOf("$0.0") }
+
+    @SuppressLint("SimpleDateFormat")
+    val sdf = SimpleDateFormat("dd/M/yyyy")
+    val currentDate: String = sdf.format(Date())
+
     BaseAppTheme {
         Scaffold(topBar = {
             TopAppBar(
                 title = { Text(text = "Dinero fisico") }, navigationIcon = {
                     IconButton(
                         onClick = {
-                            navController.popBackStack()
+                            navController.navigate("dineronotas")
                         },
 
                         ) {
@@ -151,6 +151,26 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
                             Spacer(modifier = Modifier.padding(2.dp))
                             Text(text = "Guardar", fontSize = 20.sp)
                         }
+                    }
+                    Button(modifier = Modifier.padding(end = 16.dp), onClick = {
+                        numberMil = ""
+                        numberQui = ""
+                        numberDoc = ""
+                        numberCie = ""
+                        numberCin = ""
+                        numberVei = ""
+                        numberDie = ""
+                        numberCco = ""
+                        numberDos = ""
+                        numberUno = ""
+                        numberCen = ""
+                        dineroFisicoTotal = "$0.0"
+                        dineroTotal = "$0.0"
+
+                    }) {
+                        Icon(Icons.Filled.Clear, contentDescription = null)
+                        Spacer(modifier = Modifier.padding(2.dp))
+                        Text(text = "Limpiar", fontSize = 20.sp)
                     }
                     Text(
                         text = "Dinero Notas total $$dineroNotas",
