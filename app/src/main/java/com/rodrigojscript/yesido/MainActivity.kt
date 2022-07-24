@@ -7,9 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.rodrigojscript.yesido.view.screens.CasitaDeDatitos
-import com.rodrigojscript.yesido.view.screens.DineroFisico
-import com.rodrigojscript.yesido.view.screens.DineroNotas
+import com.rodrigojscript.yesido.view.screens.*
 import com.rodrigojscript.yesido.viewmodel.YesViewModel
 
 class MainActivity : ComponentActivity() {
@@ -19,7 +17,8 @@ class MainActivity : ComponentActivity() {
         val yesViewModel: YesViewModel = ViewModelProvider(this)[YesViewModel::class.java]
         setContent {
             val navController = rememberNavController()
-            NavHost(navController = navController, startDestination = "dineronotas") {
+            NavHost(navController = navController, startDestination = "splash") {
+                composable("splash") { SplashScreen(navController) }
                 composable("dinerofisico") { DineroFisico(navController, yesViewModel) }
                 composable("dineronotas") { DineroNotas(navController, yesViewModel) }
                 composable("datitos") { CasitaDeDatitos(navController, yesViewModel) }
