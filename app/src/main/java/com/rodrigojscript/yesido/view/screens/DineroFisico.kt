@@ -74,37 +74,37 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
                     )
             ) {
                 item {
-                    CustomCardFisico(nmb = numberMil, image = R.drawable.mil) {
+                    CustomCardFisico(nmb = numberMil, valor = "$1000") {
                         numberMil = it
                     }
-                    CustomCardFisico(nmb = numberQui, image = R.drawable.qui) {
+                    CustomCardFisico(nmb = numberQui, valor = "$500") {
                         numberQui = it
                     }
-                    CustomCardFisico(nmb = numberDoc, image = R.drawable.doc) {
+                    CustomCardFisico(nmb = numberDoc, valor = "$200") {
                         numberDoc = it
                     }
-                    CustomCardFisico(nmb = numberCie, image = R.drawable.cien) {
+                    CustomCardFisico(nmb = numberCie, valor = "$100") {
                         numberCie = it
                     }
-                    CustomCardFisico(nmb = numberCin, image = R.drawable.cin) {
+                    CustomCardFisico(nmb = numberCin, valor = "$50") {
                         numberCin = it
                     }
-                    CustomCardFisico(nmb = numberVei, image = R.drawable.vei) {
+                    CustomCardFisico(nmb = numberVei, valor = "$20") {
                         numberVei = it
                     }
-                    CustomCardFisico(nmb = numberDie, image = R.drawable.die) {
+                    CustomCardFisico(nmb = numberDie, valor = "$10") {
                         numberDie = it
                     }
-                    CustomCardFisico(nmb = numberCco, image = R.drawable.cco) {
+                    CustomCardFisico(nmb = numberCco, valor = "$5") {
                         numberCco = it
                     }
-                    CustomCardFisico(nmb = numberDos, image = R.drawable.dos) {
+                    CustomCardFisico(nmb = numberDos, valor = "$2") {
                         numberDos = it
                     }
-                    CustomCardFisico(nmb = numberUno, image = R.drawable.uno) {
+                    CustomCardFisico(nmb = numberUno, valor = "$1") {
                         numberUno = it
                     }
-                    CustomCardFisico(nmb = numberCen, image = R.drawable.cen) {
+                    CustomCardFisico(nmb = numberCen, valor = "50¢") {
                         numberCen = it
                     }
                     Row(
@@ -136,6 +136,7 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
                             Text(text = "Calcular", fontSize = 20.sp)
                         }
                         Button(onClick = {
+
                             navController.navigate("datitos")
                             yesViewModel.insertSaldo(
                                 SaldoDia(

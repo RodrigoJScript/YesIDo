@@ -14,17 +14,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun CustomCardFisico(nmb: String, image: Int, onChange: onChange) {
+fun CustomCardFisico(nmb: String, valor: String, onChange: onChange) {
     Row(
         modifier = Modifier.padding(2.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        Image(
-            modifier = Modifier
-                .padding(start = 4.dp)
-                .size(100.dp), painter = painterResource(id = image),
-            contentDescription = null
-        )
+        Text(modifier = Modifier.padding(end = 8.dp), text = valor, fontSize = 20.sp)
         CustomTextField(number = nmb) {
             onChange(it)
         }
@@ -40,7 +36,7 @@ fun CustomCardNotas(nmb: String, title: String, onChange: onChange) {
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(text = title, fontSize = 16.sp)
+        Text(text = title, fontSize = 20.sp)
         CustomTextField(number = nmb) {
             onChange(it)
         }
