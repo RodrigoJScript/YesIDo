@@ -16,6 +16,12 @@ import com.rodrigojscript.yesido.view.components.CustomCardCasita
 import com.rodrigojscript.yesido.view.theme.BaseAppTheme
 import com.rodrigojscript.yesido.viewmodel.YesViewModel
 
+/**
+ * Casita de datitos
+ *
+ * @param navController
+ * @param yesViewModel
+ */
 @Composable
 fun CasitaDeDatitos(navController: NavController, yesViewModel: YesViewModel) {
     BaseAppTheme {

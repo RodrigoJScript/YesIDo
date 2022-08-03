@@ -5,19 +5,19 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.rodrigojscript.yesido.R
 import com.rodrigojscript.yesido.model.database.SaldoDia
 import com.rodrigojscript.yesido.view.components.CustomCardFisico
 import com.rodrigojscript.yesido.view.theme.BaseAppTheme
@@ -30,6 +30,12 @@ var colors: Color = Color.Black
 var explicito: String = "Todo cuadra"
 
 
+/**
+ * Dinero fisico
+ *
+ * @param navController
+ * @param yesViewModel
+ */
 @Composable
 fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
     var numberMil by rememberSaveable { mutableStateOf("") }

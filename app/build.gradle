@@ -11,7 +11,7 @@ android {
         applicationId "com.rodrigojscript.yesido"
         minSdk 21
         targetSdk 32
-        versionCode 1
+        versionCode 3
         versionName "1.2.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

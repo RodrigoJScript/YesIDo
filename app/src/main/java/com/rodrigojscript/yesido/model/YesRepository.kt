@@ -8,6 +8,13 @@ import com.rodrigojscript.yesido.model.database.YesDao
 import com.rodrigojscript.yesido.model.database.YesDatabase
 import com.rodrigojscript.yesido.view.screens.*
 
+/**
+ * Yes repository: Repositorio para conectar viewmodel con model
+ *
+ * @constructor
+ *
+ * @param application
+ */
 class YesRepository(application: Application) {
     private var yesDao: YesDao
 
@@ -18,14 +25,44 @@ class YesRepository(application: Application) {
     }
 
     val readAllSaldo: LiveData<MutableList<SaldoDia>> = yesDao.getSaldoDia()
+
+    /**
+     * Insert saldo
+     *
+     * @param saldoDia
+     */
     suspend fun insertSaldo(saldoDia: SaldoDia) {
         yesDao.insert(saldoDia)
     }
 
+    /**
+     * Delete saldo
+     *
+     * @param saldoDia
+     */
     suspend fun deleteSaldo(saldoDia: SaldoDia) {
         yesDao.delete(saldoDia)
     }
 
+    /**
+     * Calcular el dinero de las notas ingresado
+     *
+     * @param nota1
+     * @param nota2
+     * @param nota3
+     * @param nota4
+     * @param nota5
+     * @param nota6
+     * @param nota7
+     * @param nota8
+     * @param nota9
+     * @param nota10
+     * @param nota11
+     * @param nota12
+     * @param nota13
+     * @param nota14
+     * @param nota15
+     */
     fun calcularDN(
         nota1: String,
         nota2: String,
@@ -67,6 +104,21 @@ class YesRepository(application: Application) {
             }
     }
 
+    /**
+     * Calcular dinero fisico ingresado
+     *
+     * @param numberMil
+     * @param numberQui
+     * @param numberDoc
+     * @param numberCie
+     * @param numberCin
+     * @param numberVei
+     * @param numberDie
+     * @param numberCco
+     * @param numberDos
+     * @param numberUno
+     * @param numberCen
+     */
     fun calcularDF(
         numberMil: String,
         numberQui: String,
@@ -115,19 +167,24 @@ class YesRepository(application: Application) {
         }
     }
 
+    /**
+     * Explicidad: Mas explicidad al resultado
+     *
+     * @param dineroT
+     */
     fun explicidad(dineroT: Double) {
         colors = if (dineroT > 0.1) {
             Color.Green
         } else if (dineroT < 0.0) {
             Color.Red
         } else {
-            Color.Black
+            Color.Yellow
         }
         explicito = if (dineroT > 0.1) {
             "Sobran"
         } else if (dineroT < 0.0) {
             "Faltan"
-        } else  {
+        } else {
             "Todo Cuadra"
         }
     }
