@@ -4,6 +4,16 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * Saldo dia Entidad
+ *
+ * @property id
+ * @property dineroNotas
+ * @property dineroFisico
+ * @property dineroTotal
+ * @property fecha
+ * @constructor Create empty Saldo dia
+ */
 @Entity(tableName = "saldodia")
 data class SaldoDia(
     @PrimaryKey(autoGenerate = true)

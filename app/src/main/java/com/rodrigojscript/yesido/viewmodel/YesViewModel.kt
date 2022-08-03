@@ -3,7 +3,6 @@ package com.rodrigojscript.yesido.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.rodrigojscript.yesido.model.YesRepository
 import com.rodrigojscript.yesido.model.database.SaldoDia
@@ -11,28 +10,63 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
+/**
+ * Yes view model: Para conectar view con model
+ *
+ * @constructor
+ *
+ * @param application
+ */
 class YesViewModel(application: Application) : AndroidViewModel(application) {
 
     private val yesRepository: YesRepository = YesRepository(application)
-    private val dN: MutableLiveData<Double>? = null
-    private val dF: MutableLiveData<Double>? = null
 
+    /**
+     * Get all saldo
+     *
+     * @return
+     */
     fun getAllSaldo(): LiveData<MutableList<SaldoDia>> {
         return yesRepository.readAllSaldo
     }
 
+    /**
+     * Insert saldo
+     *
+     * @param saldoDia
+     */
     fun insertSaldo(saldoDia: SaldoDia) {
         viewModelScope.launch(Dispatchers.IO) {
             yesRepository.insertSaldo(saldoDia)
         }
     }
 
+    /**
+     * Delete saldo
+     *
+     * @param saldoDia
+     */
     fun deleteSaldo(saldoDia: SaldoDia) {
         viewModelScope.launch(Dispatchers.IO) {
             yesRepository.deleteSaldo(saldoDia)
         }
     }
 
+    /**
+     * Calcular d f
+     *
+     * @param nMil
+     * @param nQui
+     * @param nDoc
+     * @param nCie
+     * @param nCin
+     * @param nVei
+     * @param nDie
+     * @param nCco
+     * @param nDos
+     * @param nUno
+     * @param nCen
+     */
     fun calcularDF(
         nMil: String,
         nQui: String,
@@ -61,6 +95,25 @@ class YesViewModel(application: Application) : AndroidViewModel(application) {
         )
     }
 
+    /**
+     * Calcular d n
+     *
+     * @param n1
+     * @param n2
+     * @param n3
+     * @param n4
+     * @param n5
+     * @param n6
+     * @param n7
+     * @param n8
+     * @param n9
+     * @param n10
+     * @param n11
+     * @param n12
+     * @param n13
+     * @param n14
+     * @param n15
+     */
     fun calcularDN(
         n1: String,
         n2: String,
@@ -97,6 +150,11 @@ class YesViewModel(application: Application) : AndroidViewModel(application) {
         )
     }
 
+    /**
+     * Explicidad
+     *
+     * @param dineroT
+     */
     fun explicidad(dineroT: Double) {
         yesRepository.explicidad(dineroT)
     }

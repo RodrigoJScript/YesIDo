@@ -5,7 +5,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
-import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
@@ -15,6 +14,12 @@ import androidx.compose.ui.unit.dp
 
 typealias onChange = (String) -> Unit
 
+/**
+ * Custom text field
+ *
+ * @param number
+ * @param onChange
+ */
 @Composable
 fun CustomTextField(number: String, onChange: onChange) {
     OutlinedTextField(
@@ -34,6 +39,10 @@ fun CustomTextField(number: String, onChange: onChange) {
     )
 }
 
+/**
+ * Custom text field preview
+ *
+ */
 @Preview(showBackground = true)
 @Composable
 fun CustomTextFieldPreview() {

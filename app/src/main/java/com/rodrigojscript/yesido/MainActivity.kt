@@ -10,6 +10,11 @@ import androidx.navigation.compose.rememberNavController
 import com.rodrigojscript.yesido.view.screens.*
 import com.rodrigojscript.yesido.viewmodel.YesViewModel
 
+/**
+ * Main activity
+ *
+ * @constructor Create empty Main activity
+ */
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +28,6 @@ class MainActivity : ComponentActivity() {
                 composable("dineronotas") { DineroNotas(navController, yesViewModel) }
                 composable("datitos") { CasitaDeDatitos(navController, yesViewModel) }
             }
-
         }
     }
 }
