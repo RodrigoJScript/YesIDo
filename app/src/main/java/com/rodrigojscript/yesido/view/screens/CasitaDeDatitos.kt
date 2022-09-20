@@ -1,5 +1,6 @@
 package com.rodrigojscript.yesido.view.screens
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -22,6 +23,7 @@ import com.rodrigojscript.yesido.viewmodel.YesViewModel
  * @param navController
  * @param yesViewModel
  */
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun CasitaDeDatitos(navController: NavController, yesViewModel: YesViewModel) {
     BaseAppTheme {

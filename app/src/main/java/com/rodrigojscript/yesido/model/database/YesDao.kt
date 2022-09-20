@@ -18,6 +18,9 @@ interface YesDao {
     @Query("SELECT * FROM saldodia ORDER BY id DESC")
     fun getSaldoDia(): LiveData<MutableList<SaldoDia>>
 
+    @Query("SELECT * FROM dineroennotas ORDER BY id DESC")
+    fun getDineroEnNotas(): LiveData<MutableList<DineroEnNotas>>
+
     /**
      * Inserta nuevos objetos a la BD
      *
@@ -25,6 +28,9 @@ interface YesDao {
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(saldoDia: SaldoDia)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertN(dineroEnNotas: DineroEnNotas)
 
     /**
      * Update: Actualiza los objetos ya existentes en la BD
@@ -42,4 +48,6 @@ interface YesDao {
     @Delete
     suspend fun delete(saldoDia: SaldoDia)
 
+    @Delete
+    suspend fun deleteN(dineroEnNotas: DineroEnNotas)
 }

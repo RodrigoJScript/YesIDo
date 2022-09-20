@@ -9,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.rodrigojscript.yesido.model.database.DineroEnNotas
 import com.rodrigojscript.yesido.model.database.SaldoDia
 import com.rodrigojscript.yesido.viewmodel.YesViewModel
 
@@ -65,6 +66,24 @@ fun CustomCardCasita(item: SaldoDia, yesViewModel: YesViewModel) {
                 style = MaterialTheme.typography.caption,
                 fontSize = 16.sp
             )
+        }
+    }
+}
+
+@Composable
+fun CustomCardNotas(item: DineroEnNotas, yesViewModel: YesViewModel) {
+
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+    ) {
+        Text(
+            text = " Nota: ${item.dineroNota}",
+            style = MaterialTheme.typography.caption,
+            fontSize = 24.sp
+        )
+        IconButton(onClick = { yesViewModel.deleteNota(item) }) {
+            Icon(Icons.Filled.Delete, "")
         }
     }
 }

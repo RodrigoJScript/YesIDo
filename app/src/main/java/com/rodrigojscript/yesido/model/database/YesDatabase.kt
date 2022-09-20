@@ -10,7 +10,7 @@ import androidx.room.RoomDatabase
  *
  * @constructor Create empty Yes database
  */
-@Database(entities = [SaldoDia::class], version = 1, exportSchema = false)
+@Database(entities = [SaldoDia::class, DineroEnNotas::class], version = 2, exportSchema = false)
 abstract class YesDatabase : RoomDatabase() {
     /**
      * Yes dao: Conexion con el DAO
