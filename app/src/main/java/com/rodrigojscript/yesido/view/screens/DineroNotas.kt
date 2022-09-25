@@ -1,5 +1,7 @@
 package com.rodrigojscript.yesido.view.screens
 
+import android.annotation.SuppressLint
+import android.content.Context
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -28,6 +30,9 @@ import com.rodrigojscript.yesido.view.components.CustomCardNotas
 import com.rodrigojscript.yesido.view.components.onChange
 import com.rodrigojscript.yesido.view.theme.BaseAppTheme
 import com.rodrigojscript.yesido.viewmodel.YesViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 var dineroNotas: Double = 0.0
 
@@ -37,10 +42,12 @@ var dineroNotas: Double = 0.0
  * @param navController
  * @param yesViewModel
  */
+@SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun DineroNotas(navController: NavController, yesViewModel: YesViewModel) {
     var nota1 by rememberSaveable { mutableStateOf("") }
     val list: List<DineroEnNotas> = yesViewModel.getAllNotas().observeAsState(listOf()).value
+    val coroutineScope = rememberCoroutineScope()
 
     var dineroTotalNotas by remember { mutableStateOf("$0.0") }
 
@@ -107,13 +114,9 @@ fun DineroNotas(navController: NavController, yesViewModel: YesViewModel) {
                             .fillMaxWidth(),
                         horizontalArrangement = Arrangement.Center
                     ) {
-                        Button(modifier = Modifier.padding(8.dp), onClick = {
+                        coroutineScope.launch(Dispatchers.IO) {
                             dineroNotas = list.sumOf { it.dineroNota }
                             dineroTotalNotas = "$$dineroNotas"
-                        }) {
-                            Icon(Icons.Filled.Add, contentDescription = null)
-                            Spacer(modifier = Modifier.padding(2.dp))
-                            Text(text = "Calcular", fontSize = 20.sp)
                         }
                         Button(
                             modifier = Modifier.padding(8.dp),
@@ -122,16 +125,6 @@ fun DineroNotas(navController: NavController, yesViewModel: YesViewModel) {
                             Spacer(modifier = Modifier.padding(2.dp))
                             Text(text = "Siguiente", fontSize = 20.sp)
                         }
-                    }
-                    Button(
-                        modifier = Modifier.padding(8.dp),
-                        onClick = {
-                            nota1 = ""
-                            dineroTotalNotas = "$0.0"
-                        }) {
-                        Icon(Icons.Filled.Clear, contentDescription = null)
-                        Spacer(modifier = Modifier.padding(2.dp))
-                        Text(text = "Limpiar", fontSize = 20.sp)
                     }
                     Text(
                         modifier = Modifier.padding(bottom = 4.dp),
@@ -146,3 +139,4 @@ fun DineroNotas(navController: NavController, yesViewModel: YesViewModel) {
         })
     }
 }
+
