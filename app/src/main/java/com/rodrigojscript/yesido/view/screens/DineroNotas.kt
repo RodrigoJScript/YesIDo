@@ -47,7 +47,7 @@ var dineroNotas: Double = 0.0
 fun DineroNotas(navController: NavController, yesViewModel: YesViewModel) {
     var nota1 by rememberSaveable { mutableStateOf("") }
     val list: List<DineroEnNotas> = yesViewModel.getAllNotas().observeAsState(listOf()).value
-    val coroutineScope = rememberCoroutineScope()
+    val coroutineScope: CoroutineScope = rememberCoroutineScope()
 
     var dineroTotalNotas by remember { mutableStateOf("$0.0") }
 
