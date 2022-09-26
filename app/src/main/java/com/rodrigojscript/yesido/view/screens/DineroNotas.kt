@@ -120,6 +120,13 @@ fun DineroNotas(navController: NavController, yesViewModel: YesViewModel) {
                         }
                         Button(
                             modifier = Modifier.padding(8.dp),
+                            onClick = { yesViewModel.clear() }) {
+                            Icon(Icons.Filled.Clear, contentDescription = null)
+                            Spacer(modifier = Modifier.padding(2.dp))
+                            Text(text = "Limpiar", fontSize = 20.sp)
+                        }
+                        Button(
+                            modifier = Modifier.padding(8.dp),
                             onClick = { navController.navigate("dinerofisico") }) {
                             Icon(Icons.Filled.ArrowForward, contentDescription = null)
                             Spacer(modifier = Modifier.padding(2.dp))

@@ -54,6 +54,10 @@ class YesRepository(application: Application) {
         yesDao.deleteN(dineroEnNotas)
     }
 
+    suspend fun clear() {
+        yesDao.clear()
+    }
+
     /**
      * Calcular dinero fisico ingresado
      *

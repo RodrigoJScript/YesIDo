@@ -35,6 +35,12 @@ class YesViewModel(application: Application) : AndroidViewModel(application) {
         return yesRepository.readAllNotas
     }
 
+    fun clear(){
+        viewModelScope.launch(Dispatchers.IO) {
+            yesRepository.clear()
+        }
+    }
+
     /**
      * Insert saldo
      *

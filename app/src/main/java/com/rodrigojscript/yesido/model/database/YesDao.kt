@@ -21,6 +21,9 @@ interface YesDao {
     @Query("SELECT * FROM dineroennotas ORDER BY id DESC")
     fun getDineroEnNotas(): LiveData<MutableList<DineroEnNotas>>
 
+    @Query("DELETE FROM dineroennotas")
+    suspend fun clear()
+
     /**
      * Inserta nuevos objetos a la BD
      *
