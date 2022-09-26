@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.rodrigojscript.yesido.model.YesRepository
+import com.rodrigojscript.yesido.model.database.DineroEnNotas
 import com.rodrigojscript.yesido.model.database.SaldoDia
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -30,6 +31,16 @@ class YesViewModel(application: Application) : AndroidViewModel(application) {
         return yesRepository.readAllSaldo
     }
 
+    fun getAllNotas(): LiveData<MutableList<DineroEnNotas>> {
+        return yesRepository.readAllNotas
+    }
+
+    fun clear(){
+        viewModelScope.launch(Dispatchers.IO) {
+            yesRepository.clear()
+        }
+    }
+
     /**
      * Insert saldo
      *
@@ -41,6 +52,12 @@ class YesViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun insertNotas(dineroEnNotas: DineroEnNotas) {
+        viewModelScope.launch(Dispatchers.IO) {
+            yesRepository.insertNotas(dineroEnNotas)
+        }
+    }
+
     /**
      * Delete saldo
      *
@@ -49,6 +66,11 @@ class YesViewModel(application: Application) : AndroidViewModel(application) {
     fun deleteSaldo(saldoDia: SaldoDia) {
         viewModelScope.launch(Dispatchers.IO) {
             yesRepository.deleteSaldo(saldoDia)
+        }
+    }
+    fun deleteNota(dineroEnNotas: DineroEnNotas) {
+        viewModelScope.launch(Dispatchers.IO) {
+            yesRepository.deleteNota(dineroEnNotas)
         }
     }
 
@@ -92,61 +114,6 @@ class YesViewModel(application: Application) : AndroidViewModel(application) {
             numberDos = nDos,
             numberUno = nUno,
             numberCen = nCen
-        )
-    }
-
-    /**
-     * Calcular d n
-     *
-     * @param n1
-     * @param n2
-     * @param n3
-     * @param n4
-     * @param n5
-     * @param n6
-     * @param n7
-     * @param n8
-     * @param n9
-     * @param n10
-     * @param n11
-     * @param n12
-     * @param n13
-     * @param n14
-     * @param n15
-     */
-    fun calcularDN(
-        n1: String,
-        n2: String,
-        n3: String,
-        n4: String,
-        n5: String,
-        n6: String,
-        n7: String,
-        n8: String,
-        n9: String,
-        n10: String,
-        n11: String,
-        n12: String,
-        n13: String,
-        n14: String,
-        n15: String,
-    ) {
-        yesRepository.calcularDN(
-            nota1 = n1,
-            nota2 = n2,
-            nota3 = n3,
-            nota4 = n4,
-            nota5 = n5,
-            nota6 = n6,
-            nota7 = n7,
-            nota8 = n8,
-            nota9 = n9,
-            nota10 = n10,
-            nota11 = n11,
-            nota12 = n12,
-            nota13 = n13,
-            nota14 = n14,
-            nota15 = n15
         )
     }
 

@@ -31,3 +31,12 @@ data class SaldoDia(
     @ColumnInfo(name = "fecha")
     var fecha: String,
 )
+
+@Entity(tableName = "dineroennotas")
+data class DineroEnNotas(
+    @PrimaryKey(autoGenerate = true)
+    var id: Int?,
+
+    @ColumnInfo(name = "dineroNota")
+    var dineroNota: Double
+)

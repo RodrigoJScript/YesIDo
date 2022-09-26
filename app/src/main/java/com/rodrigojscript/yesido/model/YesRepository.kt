@@ -3,6 +3,7 @@ package com.rodrigojscript.yesido.model
 import android.app.Application
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.LiveData
+import com.rodrigojscript.yesido.model.database.DineroEnNotas
 import com.rodrigojscript.yesido.model.database.SaldoDia
 import com.rodrigojscript.yesido.model.database.YesDao
 import com.rodrigojscript.yesido.model.database.YesDatabase
@@ -25,6 +26,7 @@ class YesRepository(application: Application) {
     }
 
     val readAllSaldo: LiveData<MutableList<SaldoDia>> = yesDao.getSaldoDia()
+    val readAllNotas: LiveData<MutableList<DineroEnNotas>> = yesDao.getDineroEnNotas()
 
     /**
      * Insert saldo
@@ -33,6 +35,10 @@ class YesRepository(application: Application) {
      */
     suspend fun insertSaldo(saldoDia: SaldoDia) {
         yesDao.insert(saldoDia)
+    }
+
+    suspend fun insertNotas(dineroEnNotas: DineroEnNotas) {
+        yesDao.insertN(dineroEnNotas)
     }
 
     /**
@@ -44,64 +50,12 @@ class YesRepository(application: Application) {
         yesDao.delete(saldoDia)
     }
 
-    /**
-     * Calcular el dinero de las notas ingresado
-     *
-     * @param nota1
-     * @param nota2
-     * @param nota3
-     * @param nota4
-     * @param nota5
-     * @param nota6
-     * @param nota7
-     * @param nota8
-     * @param nota9
-     * @param nota10
-     * @param nota11
-     * @param nota12
-     * @param nota13
-     * @param nota14
-     * @param nota15
-     */
-    fun calcularDN(
-        nota1: String,
-        nota2: String,
-        nota3: String,
-        nota4: String,
-        nota5: String,
-        nota6: String,
-        nota7: String,
-        nota8: String,
-        nota9: String,
-        nota10: String,
-        nota11: String,
-        nota12: String,
-        nota13: String,
-        nota14: String,
-        nota15: String
-    ) {
-        val no1: Double? = isNull(nota1)
-        val no2: Double? = isNull(nota2)
-        val no3: Double? = isNull(nota3)
-        val no4: Double? = isNull(nota4)
-        val no5: Double? = isNull(nota5)
-        val no6: Double? = isNull(nota6)
-        val no7: Double? = isNull(nota7)
-        val no8: Double? = isNull(nota8)
-        val no9: Double? = isNull(nota9)
-        val no10: Double? = isNull(nota10)
-        val no11: Double? = isNull(nota11)
-        val no12: Double? = isNull(nota12)
-        val no13: Double? = isNull(nota13)
-        val no14: Double? = isNull(nota14)
-        val no15: Double? = isNull(nota15)
+    suspend fun deleteNota(dineroEnNotas: DineroEnNotas) {
+        yesDao.deleteN(dineroEnNotas)
+    }
 
-        dineroNotas =
-            if (no1 != null && no2 != null && no3 != null && no4 != null && no5 != null && no6 != null && no7 != null && no8 != null && no9 != null && no10 != null && no11 != null && no12 != null && no13 != null && no14 != null && no15 != null) {
-                no1 + no2 + no3 + no4 + no5 + no6 + no7 + no8 + no9 + no10 + no11 + no12 + no13 + no14 + no15
-            } else {
-                0.0
-            }
+    suspend fun clear() {
+        yesDao.clear()
     }
 
     /**

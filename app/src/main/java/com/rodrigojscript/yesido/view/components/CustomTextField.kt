@@ -38,13 +38,3 @@ fun CustomTextField(number: String, onChange: onChange) {
         label = { Text(text = "Dinero") }
     )
 }
-
-/**
- * Custom text field preview
- *
- */
-@Preview(showBackground = true)
-@Composable
-fun CustomTextFieldPreview() {
-    CustomTextField("20") {}
-}

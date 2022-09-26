@@ -22,6 +22,8 @@ import com.rodrigojscript.yesido.model.database.SaldoDia
 import com.rodrigojscript.yesido.view.components.CustomCardFisico
 import com.rodrigojscript.yesido.view.theme.BaseAppTheme
 import com.rodrigojscript.yesido.viewmodel.YesViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -36,6 +38,7 @@ var explicito: String = "Todo cuadra"
  * @param navController
  * @param yesViewModel
  */
+@SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
     var numberMil by rememberSaveable { mutableStateOf("") }
@@ -51,6 +54,7 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
     var numberCen by rememberSaveable { mutableStateOf("") }
     var dineroFisicoTotal by remember { mutableStateOf("$0.0") }
     var dineroTotal by remember { mutableStateOf("$0.0") }
+    val coroutineScope = rememberCoroutineScope()
 
     @SuppressLint("SimpleDateFormat")
     val sdf = SimpleDateFormat("dd/M/yyyy")
@@ -119,7 +123,7 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
                             .fillMaxWidth(),
                         horizontalArrangement = Arrangement.Center
                     ) {
-                        Button(modifier = Modifier.padding(end = 16.dp), onClick = {
+                        coroutineScope.launch(Dispatchers.IO) {
                             yesViewModel.calcularDF(
                                 nMil = numberMil,
                                 nQui = numberQui,
@@ -136,10 +140,6 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
                             dineroFisicoTotal = dineroFisico.toString()
                             dineroTotal = (dineroFisico - dineroNotas).toString()
                             yesViewModel.explicidad(dineroTotal.toDouble())
-                        }) {
-                            Icon(Icons.Filled.Add, contentDescription = null)
-                            Spacer(modifier = Modifier.padding(2.dp))
-                            Text(text = "Calcular", fontSize = 20.sp)
                         }
                         Button(onClick = {
 
