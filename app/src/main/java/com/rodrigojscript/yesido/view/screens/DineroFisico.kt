@@ -141,43 +141,50 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
                             dineroTotal = (dineroFisico - dineroNotas).toString()
                             yesViewModel.explicidad(dineroTotal.toDouble())
                         }
-                        Button(onClick = {
+                        Row(
+                            modifier = Modifier
+                                .padding(8.dp)
+                                .fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Center
+                        ) {
+                            Button(modifier = Modifier.padding(8.dp),
+                                onClick = {
+                                    navController.navigate("datitos")
+                                    yesViewModel.insertSaldo(
+                                        SaldoDia(
+                                            id = null,
+                                            dineroFisico = dineroFisico,
+                                            dineroNotas = dineroNotas,
+                                            dineroTotal = dineroTotal.toDouble(),
+                                            fecha = currentDate
+                                        )
+                                    )
+                                }) {
+                                Icon(Icons.Filled.Done, contentDescription = null)
+                                Spacer(modifier = Modifier.padding(2.dp))
+                                Text(text = "Guardar", fontSize = 20.sp)
+                            }
+                            Button(modifier = Modifier.padding(8.dp), onClick = {
+                                numberMil = ""
+                                numberQui = ""
+                                numberDoc = ""
+                                numberCie = ""
+                                numberCin = ""
+                                numberVei = ""
+                                numberDie = ""
+                                numberCco = ""
+                                numberDos = ""
+                                numberUno = ""
+                                numberCen = ""
+                                dineroFisicoTotal = "$0.0"
+                                dineroTotal = "$0.0"
 
-                            navController.navigate("datitos")
-                            yesViewModel.insertSaldo(
-                                SaldoDia(
-                                    id = null,
-                                    dineroFisico = dineroFisico,
-                                    dineroNotas = dineroNotas,
-                                    dineroTotal = dineroTotal.toDouble(),
-                                    fecha = currentDate
-                                )
-                            )
-                        }) {
-                            Icon(Icons.Filled.Done, contentDescription = null)
-                            Spacer(modifier = Modifier.padding(2.dp))
-                            Text(text = "Guardar", fontSize = 20.sp)
+                            }) {
+                                Icon(Icons.Filled.Clear, contentDescription = null)
+                                Spacer(modifier = Modifier.padding(2.dp))
+                                Text(text = "Limpiar", fontSize = 20.sp)
+                            }
                         }
-                    }
-                    Button(modifier = Modifier.padding(end = 16.dp), onClick = {
-                        numberMil = ""
-                        numberQui = ""
-                        numberDoc = ""
-                        numberCie = ""
-                        numberCin = ""
-                        numberVei = ""
-                        numberDie = ""
-                        numberCco = ""
-                        numberDos = ""
-                        numberUno = ""
-                        numberCen = ""
-                        dineroFisicoTotal = "$0.0"
-                        dineroTotal = "$0.0"
-
-                    }) {
-                        Icon(Icons.Filled.Clear, contentDescription = null)
-                        Spacer(modifier = Modifier.padding(2.dp))
-                        Text(text = "Limpiar", fontSize = 20.sp)
                     }
                     Text(
                         text = "Dinero Notas total $$dineroNotas",
