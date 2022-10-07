@@ -34,7 +34,7 @@ interface YesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertN(dineroEnNotas: DineroEnNotas)
-
+    
     /**
      * Update: Actualiza los objetos ya existentes en la BD
      *

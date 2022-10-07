@@ -55,10 +55,6 @@ fun CustomCardCasita(item: SaldoDia, yesViewModel: YesViewModel) {
                     style = MaterialTheme.typography.caption,
                     fontSize = 16.sp
                 )
-                Spacer(modifier = Modifier.weight(1F))
-                IconButton(onClick = { yesViewModel.deleteSaldo(item) }) {
-                    Icon(Icons.Filled.Delete, "")
-                }
             }
             Text(
                 modifier = Modifier.padding(bottom = 4.dp),
@@ -66,6 +62,10 @@ fun CustomCardCasita(item: SaldoDia, yesViewModel: YesViewModel) {
                 style = MaterialTheme.typography.caption,
                 fontSize = 16.sp
             )
+            Spacer(modifier = Modifier.width(10.dp))
+            IconButton(onClick = { yesViewModel.deleteSaldo(item) }) {
+                Icon(Icons.Filled.Delete, "")
+            }
         }
     }
 }
