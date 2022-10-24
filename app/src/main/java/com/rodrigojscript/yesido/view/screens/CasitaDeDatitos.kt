@@ -30,7 +30,7 @@ fun CasitaDeDatitos(navController: NavController, yesViewModel: YesViewModel) {
 
         val list: List<SaldoDia> = yesViewModel.getAllSaldo().observeAsState(listOf()).value
         Scaffold(topBar = {
-            TopAppBar(title = { Text(text = "Casita De Datitos") }, navigationIcon = {
+            TopAppBar(title = { Text(text = "Datos Guardados") }, navigationIcon = {
                 IconButton(
                     onClick = { navController.popBackStack() }) {
                     Icon(Icons.Filled.ArrowBack, contentDescription = null)

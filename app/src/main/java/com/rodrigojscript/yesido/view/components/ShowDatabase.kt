@@ -5,6 +5,8 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -21,7 +23,33 @@ import com.rodrigojscript.yesido.viewmodel.YesViewModel
  */
 @Composable
 fun CustomCardCasita(item: SaldoDia, yesViewModel: YesViewModel) {
+    val openDialog = remember { mutableStateOf(false) }
 
+    if (openDialog.value) {
+        AlertDialog(
+            title = { Text(text = "Estas a punto de eliminar un registro") },
+            text = {
+                Text(
+                    text = "¿Eliminar?"
+                )
+            },
+            onDismissRequest = { openDialog.value = false },
+            confirmButton = {
+                TextButton(onClick = { // (4)
+                    yesViewModel.deleteSaldo(item)
+                }) {
+                    Text(text = "Eliminar")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { // (5)
+                    openDialog.value = false
+                }) {
+                    Text(text = "Cancelar")
+                }
+            }
+        )
+    }
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -63,7 +91,7 @@ fun CustomCardCasita(item: SaldoDia, yesViewModel: YesViewModel) {
                 fontSize = 16.sp
             )
             Spacer(modifier = Modifier.width(10.dp))
-            IconButton(onClick = { yesViewModel.deleteSaldo(item) }) {
+            IconButton(onClick = { openDialog.value = true }) {
                 Icon(Icons.Filled.Delete, "")
             }
         }
