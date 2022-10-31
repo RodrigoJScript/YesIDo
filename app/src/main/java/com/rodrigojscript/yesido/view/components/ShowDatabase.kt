@@ -9,6 +9,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rodrigojscript.yesido.model.database.DineroEnNotas
@@ -37,15 +38,16 @@ fun CustomCardCasita(item: SaldoDia, yesViewModel: YesViewModel) {
             confirmButton = {
                 TextButton(onClick = { // (4)
                     yesViewModel.deleteSaldo(item)
+                    openDialog.value = false
                 }) {
-                    Text(text = "Eliminar")
+                    Text(text = "Eliminar", color = Color.Black)
                 }
             },
             dismissButton = {
                 TextButton(onClick = { // (5)
                     openDialog.value = false
                 }) {
-                    Text(text = "Cancelar")
+                    Text(text = "Cancelar", color = Color.Black)
                 }
             }
         )
@@ -65,10 +67,10 @@ fun CustomCardCasita(item: SaldoDia, yesViewModel: YesViewModel) {
                 style = MaterialTheme.typography.caption,
                 fontSize = 24.sp
             )
-            Row(
+            Column(
                 modifier = Modifier.padding(8.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Spacer(modifier = Modifier.width(10.dp))
                 Text(
@@ -104,14 +106,20 @@ fun CustomCardNotas(item: DineroEnNotas, yesViewModel: YesViewModel) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
+            .padding(start = 10.dp, end = 10.dp, top = 5.dp, bottom = 5.dp)
     ) {
-        Text(
-            text = " Nota: ${item.dineroNota}",
-            style = MaterialTheme.typography.caption,
-            fontSize = 24.sp
-        )
-        IconButton(onClick = { yesViewModel.deleteNota(item) }) {
-            Icon(Icons.Filled.Delete, "")
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = " Nota: $${item.dineroNota}",
+                style = MaterialTheme.typography.caption,
+                fontSize = 24.sp
+            )
+            IconButton(onClick = { yesViewModel.deleteNota(item) }) {
+                Icon(Icons.Filled.Delete, "")
+            }
         }
     }
 }

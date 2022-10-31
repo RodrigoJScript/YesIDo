@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -26,6 +25,7 @@ class MainActivity : ComponentActivity() {
             NavHost(navController = navController, startDestination = "splash") {
                 composable("splash") { SplashScreen(navController) }
                 composable("dinerofisico") { DineroFisico(navController, yesViewModel) }
+                composable("reporte") { Reporte(navController, yesViewModel) }
                 composable("dineronotas") { DineroNotas(navController, yesViewModel) }
                 composable("datitos") { CasitaDeDatitos(navController, yesViewModel) }
             }

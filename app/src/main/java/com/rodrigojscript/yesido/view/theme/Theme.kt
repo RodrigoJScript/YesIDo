@@ -1,27 +1,33 @@
 package com.rodrigojscript.yesido.view.theme
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 
 private val DarkColorPalette = darkColors(
-    primary = primary,
-    primaryVariant = primaryDark,
-    secondary = secondary,
-    secondaryVariant = secondaryDark,
-    surface = secondaryDark
+    primary = primaryDark,
+    background = backgroundDark,
+    surface = primaryDark,
+    onPrimary = textDark,
+    onSecondary = textDark,
+    onBackground = textDark,
+    onSurface = textDark,
 )
 
+@SuppressLint("ConflictingOnColor")
 private val LightColorPalette = lightColors(
-    primary = primary,
-    primaryVariant = primaryLight,
-    secondary = secondary,
-    secondaryVariant = secondaryLight,
-    surface = secondaryLight
-    /* Other default colors to override
-    background = Color.White,
+    primary = primaryLight,
+    background = backgroundLight,
+    surface = primaryLight,
+    onPrimary = textLight,
+    onSecondary = textLight,
+    onBackground = textLight,
+    onSurface = textLight,
+    /*Other default colors to override
     surface = Color.White,
     onPrimary = Color.White,
     onSecondary = Color.Black,
@@ -39,9 +45,6 @@ fun YesIDoTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable
     }
 
     MaterialTheme(
-        colors = colors,
-        typography = Typography,
-        shapes = Shapes,
-        content = content
+        colors = colors, typography = Typography, shapes = Shapes, content = content
     )
 }
