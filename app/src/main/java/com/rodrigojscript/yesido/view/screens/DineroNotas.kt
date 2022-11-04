@@ -82,12 +82,21 @@ fun DineroNotas(navController: NavController, yesViewModel: YesViewModel) {
                                 keyboardType = KeyboardType.Number, imeAction = ImeAction.Done
                             ),
                             keyboardActions = KeyboardActions(onDone = {
-                                yesViewModel.insertNotas(
-                                    DineroEnNotas(
-                                        id = null, dineroNota = nota1.toDouble()
+                                if (nota1.isEmpty()) {
+                                    yesViewModel.insertNotas(
+                                        DineroEnNotas(
+                                            id = null, dineroNota = 0.0
+                                        )
                                     )
-                                )
-                                nota1 = ""
+                                    nota1 = ""
+                                } else {
+                                    yesViewModel.insertNotas(
+                                        DineroEnNotas(
+                                            id = null, dineroNota = nota1.toDouble()
+                                        )
+                                    )
+                                    nota1 = ""
+                                }
                             }),
                             value = nota1,
                             singleLine = true,
