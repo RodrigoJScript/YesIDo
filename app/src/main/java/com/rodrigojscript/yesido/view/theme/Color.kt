@@ -2,10 +2,10 @@ package com.rodrigojscript.yesido.view.theme
 
 import androidx.compose.ui.graphics.Color
 
-val primaryLight = Color(0xff54BAB9)
-val textLight = Color(0xff2C3B3A)
-val backgroundLight = Color(0xffE9DAC1)
+val primaryLight = Color(0xFFE6B99C)
+val textLight = Color(0xFF2E3434)
+val backgroundLight = Color(0xFFF8ECD4)
 
-val primaryDark = Color(0xffE84A5F)
-val textDark = Color(0xffFECEA8)
-val backgroundDark = Color(0xff2A363B)
+val primaryDark = Color(0xFF7F8D93)
+val textDark = Color(0xFFFFEEDB)
+val backgroundDark = Color(0xFF2E2E2E)

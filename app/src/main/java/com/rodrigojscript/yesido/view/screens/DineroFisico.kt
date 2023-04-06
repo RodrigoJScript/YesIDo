@@ -12,45 +12,27 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.rodrigojscript.yesido.model.database.SaldoDia
 import com.rodrigojscript.yesido.view.components.CustomTextField
 import com.rodrigojscript.yesido.view.theme.BaseAppTheme
 import com.rodrigojscript.yesido.viewmodel.YesViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
+import kotlinx.coroutines.withContext
 import java.util.*
 
 var dineroFisico: Double = 0.0
 var colors: Color = Color.Black
 var explicito: String = "Todo cuadra"
 var dineroTotal: String = "0.0"
+var valorIndividual = arrayOfNulls<String>(11)
 
-
-/**
- * Dinero fisico
- *
- * @param navController
- * @param yesViewModel
- */
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
-    var numberMil by rememberSaveable { mutableStateOf("") }
-    var numberQui by rememberSaveable { mutableStateOf("") }
-    var numberDoc by rememberSaveable { mutableStateOf("") }
-    var numberCie by rememberSaveable { mutableStateOf("") }
-    var numberCin by rememberSaveable { mutableStateOf("") }
-    var numberVei by rememberSaveable { mutableStateOf("") }
-    var numberDie by rememberSaveable { mutableStateOf("") }
-    var numberCco by rememberSaveable { mutableStateOf("") }
-    var numberDos by rememberSaveable { mutableStateOf("") }
-    var numberUno by rememberSaveable { mutableStateOf("") }
-    var numberCen by rememberSaveable { mutableStateOf("") }
+    val textFieldValues = remember { mutableStateListOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) }
     var dineroFisicoTotal by rememberSaveable { mutableStateOf("0.0") }
     val coroutineScope = rememberCoroutineScope()
 
@@ -68,7 +50,6 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
             })
         }, content = { innerPaddings ->
             LazyColumn(
-                horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(
@@ -76,38 +57,26 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
                     )
             ) {
                 item {
-                    CustomTextField(nmb = numberMil, valor = "$1000") {
-                        numberMil = it
-                    }
-                    CustomTextField(nmb = numberQui, valor = "$500") {
-                        numberQui = it
-                    }
-                    CustomTextField(nmb = numberDoc, valor = "$200") {
-                        numberDoc = it
-                    }
-                    CustomTextField(nmb = numberCie, valor = "$100") {
-                        numberCie = it
-                    }
-                    CustomTextField(nmb = numberCin, valor = "$50") {
-                        numberCin = it
-                    }
-                    CustomTextField(nmb = numberVei, valor = "$20") {
-                        numberVei = it
-                    }
-                    CustomTextField(nmb = numberDie, valor = "$10") {
-                        numberDie = it
-                    }
-                    CustomTextField(nmb = numberCco, valor = "$5") {
-                        numberCco = it
-                    }
-                    CustomTextField(nmb = numberDos, valor = "$2") {
-                        numberDos = it
-                    }
-                    CustomTextField(nmb = numberUno, valor = "$1") {
-                        numberUno = it
-                    }
-                    CustomTextField(nmb = numberCen, valor = "50¢") {
-                        numberCen = it
+                    for (i in 0..10) {
+                        CustomTextField(
+                            value = textFieldValues[i].toString(),
+                            label = when (i) {
+                                0 -> "$1000"
+                                1 -> "$500"
+                                2 -> "$200"
+                                3 -> "$100"
+                                4 -> "$50"
+                                5 -> "$20"
+                                6 -> "$10"
+                                7 -> "$5"
+                                8 -> "$2"
+                                9 -> "$1"
+                                10 -> "50¢"
+                                else -> ""
+                            }, valorIndividual = valorIndividual, index = i
+                        ) {
+                            textFieldValues[i] = it.toIntOrNull() ?: 0
+                        }
                     }
                     Row(
                         modifier = Modifier
@@ -115,23 +84,34 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
                             .fillMaxWidth(),
                         horizontalArrangement = Arrangement.Center
                     ) {
-                        coroutineScope.launch(Dispatchers.IO) {
-                            yesViewModel.calcularDF(
-                                nMil = numberMil,
-                                nQui = numberQui,
-                                nDoc = numberDoc,
-                                nCie = numberCie,
-                                nCin = numberCin,
-                                nVei = numberVei,
-                                nDie = numberDie,
-                                nCco = numberCco,
-                                nDos = numberDos,
-                                nUno = numberUno,
-                                nCen = numberCen
-                            )
-                            dineroFisicoTotal = dineroFisico.toString()
-                            dineroTotal = (dineroFisico - dineroNotas).toString()
-                            yesViewModel.explicidad(dineroTotal.toDouble())
+                        coroutineScope.launch {
+                            withContext(Dispatchers.IO) {
+                                valorIndividual[0] = (textFieldValues[0] * 1000.0).toString()
+                                valorIndividual[1] = (textFieldValues[1] * 500.0).toString()
+                                valorIndividual[2] = (textFieldValues[2] * 200.0).toString()
+                                valorIndividual[3] = (textFieldValues[3] * 100.0).toString()
+                                valorIndividual[4] = (textFieldValues[4] * 50.0).toString()
+                                valorIndividual[5] = (textFieldValues[5] * 20.0).toString()
+                                valorIndividual[6] = (textFieldValues[6] * 10.0).toString()
+                                valorIndividual[7] = (textFieldValues[7] * 5.0).toString()
+                                valorIndividual[8] = (textFieldValues[8] * 2.0).toString()
+                                valorIndividual[9] = (textFieldValues[9] * 1.0).toString()
+                                valorIndividual[10] = (textFieldValues[10] * 0.5).toString()
+                                dineroFisico = textFieldValues[0] * 1000.0 +
+                                        textFieldValues[1] * 500.0 +
+                                        textFieldValues[2] * 200.0 +
+                                        textFieldValues[3] * 100.0 +
+                                        textFieldValues[4] * 50.0 +
+                                        textFieldValues[5] * 20.0 +
+                                        textFieldValues[6] * 10.0 +
+                                        textFieldValues[7] * 5.0 +
+                                        textFieldValues[8] * 2.0 +
+                                        textFieldValues[9] * 1.0 +
+                                        textFieldValues[10] * 0.5
+                                dineroFisicoTotal = dineroFisico.toString()
+                                dineroTotal = (dineroFisico - dineroNotas).toString()
+                                yesViewModel.explicidad(dineroTotal.toDouble())
+                            }
                         }
                     }
                     Text(
@@ -152,35 +132,32 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
                     Box(modifier = Modifier
                         .fillMaxHeight()
                         .clickable {
-                            numberMil = ""
-                            numberQui = ""
-                            numberDoc = ""
-                            numberCie = ""
-                            numberCin = ""
-                            numberVei = ""
-                            numberDie = ""
-                            numberCco = ""
-                            numberDos = ""
-                            numberUno = ""
-                            numberCen = ""
-                            dineroFisicoTotal = "$0.0"
-                            dineroTotal = "$0.0"
+                            navController.navigate("dineronotas")
                         }) {
                         Column(
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Icon(
-                                Icons.Default.Clear,
+                                Icons.Default.ArrowBack,
                                 modifier = Modifier.size(28.dp),
                                 contentDescription = null
                             )
-                            Text(text = "Limpiar")
+                            Text(text = "Notas")
                         }
                     }
-
                     Box(modifier = Modifier
                         .fillMaxHeight()
-                        .clickable { navController.navigate("reporte") }) {
+                        .clickable {
+                            if (dineroTotal.toDouble() == 0.0) {
+                                explicito = "Todo cuadra"
+                                colors = Color.Black
+                            } else {
+                                explicito = "Hay desbalance"
+                                colors = Color.Red
+                            }
+                            yesViewModel.explicidad(dineroTotal.toDouble())
+                            navController.navigate("reporte")
+                        }) {
                         Column(
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
@@ -190,21 +167,6 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
                                 contentDescription = null
                             )
                             Text(text = "Siguiente")
-                        }
-                    }
-
-                    Box(modifier = Modifier
-                        .fillMaxHeight()
-                        .clickable { navController.navigate("datitos") }) {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            Icon(
-                                Icons.Default.Home,
-                                modifier = Modifier.size(28.dp),
-                                contentDescription = null
-                            )
-                            Text(text = "Datos")
                         }
                     }
                 }
