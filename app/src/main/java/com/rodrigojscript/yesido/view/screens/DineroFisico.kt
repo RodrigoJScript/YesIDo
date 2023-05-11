@@ -32,6 +32,7 @@ var valorIndividual = arrayOfNulls<String>(11)
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
+    val textFieldValue = remember { mutableStateListOf("", "", "", "", "", "", "", "", "", "", "") }
     val textFieldValues = remember { mutableStateListOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) }
     var dineroFisicoTotal by rememberSaveable { mutableStateOf("0.0") }
     val coroutineScope = rememberCoroutineScope()
@@ -59,7 +60,7 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
                 item {
                     for (i in 0..10) {
                         CustomTextField(
-                            value = textFieldValues[i].toString(),
+                            value = textFieldValue[i],
                             label = when (i) {
                                 0 -> "$1000"
                                 1 -> "$500"
@@ -75,7 +76,8 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
                                 else -> ""
                             }, valorIndividual = valorIndividual, index = i
                         ) {
-                            textFieldValues[i] = it.toIntOrNull() ?: 0
+                            textFieldValue[i] = it
+                            textFieldValues[i] = textFieldValue[i].toIntOrNull() ?: 0
                         }
                     }
                     Row(
