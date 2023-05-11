@@ -29,6 +29,7 @@ var explicito: String = "Todo cuadra"
 var dineroTotal: String = "0.0"
 var valorIndividual = arrayOfNulls<String>(11)
 
+// TODO: Implementa datastore para guardar los datos de los campos de texto
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
@@ -39,16 +40,7 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
 
     BaseAppTheme {
         Scaffold(topBar = {
-            TopAppBar(title = { Text(text = "Dinero fisico") }, navigationIcon = {
-                IconButton(
-                    onClick = {
-                        navController.navigate("dineronotas")
-                    },
-
-                    ) {
-                    Icon(Icons.Filled.ArrowBack, contentDescription = null)
-                }
-            })
+            TopAppBar(title = { Text(text = "Dinero fisico") })
         }, content = { innerPaddings ->
             LazyColumn(
                 modifier = Modifier

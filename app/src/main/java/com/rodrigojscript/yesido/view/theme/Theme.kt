@@ -9,31 +9,27 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 private val DarkColorPalette = darkColors(
-    primary = primaryDark,
-    background = backgroundDark,
-    surface = primaryDark,
-    onPrimary = textDark,
-    onSecondary = textDark,
-    onBackground = textDark,
-    onSurface = textDark,
+    primary = Color(0xFFE91E63),
+    primaryVariant = Color(0xFFB0003A),
+    secondary = Color(0xFF009688),
+    background = Color(0xFF121212),
+    surface = Color(0xFF1E1E1E),
+    onPrimary = Color.White,
+    onSecondary = Color.White,
+    onBackground = Color.White,
+    onSurface = Color.White,
 )
 
-@SuppressLint("ConflictingOnColor")
 private val LightColorPalette = lightColors(
-    primary = primaryLight,
-    background = backgroundLight,
-    surface = primaryLight,
-    onPrimary = textLight,
-    onSecondary = textLight,
-    onBackground = textLight,
-    onSurface = textLight,
-    /*Other default colors to override
+    primary = Color(0xFFE91E63),
+    primaryVariant = Color(0xFFB0003A),
+    secondary = Color(0xFF009688),
+    background = Color.White,
     surface = Color.White,
     onPrimary = Color.White,
-    onSecondary = Color.Black,
+    onSecondary = Color.White,
     onBackground = Color.Black,
     onSurface = Color.Black,
-    */
 )
 
 @Composable
@@ -45,6 +41,9 @@ fun YesIDoTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable
     }
 
     MaterialTheme(
-        colors = colors, typography = Typography, shapes = Shapes, content = content
+        colors = colors,
+        typography = Typography,
+        shapes = Shapes,
+        content = content
     )
 }
