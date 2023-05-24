@@ -52,6 +52,20 @@ dependencies {
     def room_version = "2.4.3"
 
     kapt "androidx.room:room-compiler:$room_version"
+    // Includes the core logic for charts and other elements.
+    implementation "com.patrykandpatrick.vico:core:1.6.5"
+
+    // For Jetpack Compose.
+    implementation "com.patrykandpatrick.vico:compose:1.6.5"
+
+    // For the view system.
+    implementation "com.patrykandpatrick.vico:views:1.6.5"
+
+    // For `compose`. Creates a `ChartStyle` based on an M2 Material Theme.
+    implementation "com.patrykandpatrick.vico:compose-m2:1.6.5"
+
+    // For `compose`. Creates a `ChartStyle` based on an M3 Material Theme.
+    implementation "com.patrykandpatrick.vico:compose-m3:1.6.5"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1'
