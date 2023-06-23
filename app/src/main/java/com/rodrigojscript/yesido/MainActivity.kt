@@ -12,7 +12,6 @@ import com.rodrigojscript.yesido.viewmodel.YesViewModel
 
 /**
  * Main activity
- *
  * @constructor Create empty Main activity
  */
 class MainActivity : ComponentActivity() {
@@ -21,14 +20,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         val yesViewModel: YesViewModel = ViewModelProvider(this)[YesViewModel::class.java]
         setContent {
-            val navController = rememberNavController()
-            NavHost(navController = navController, startDestination = "splash") {
-                composable("splash") { SplashScreen(navController) }
-                composable("dinerofisico") { DineroFisico(navController, yesViewModel) }
-                composable("reporte") { Reporte(navController, yesViewModel) }
-                composable("dineronotas") { DineroNotas(navController, yesViewModel) }
-                composable("datitos") { CasitaDeDatitos(navController, yesViewModel) }
-            }
+            NavGraph()
         }
     }
 }

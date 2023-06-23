@@ -9,6 +9,8 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -26,34 +28,27 @@ fun Reporte(navController: NavHostController, yesViewModel: YesViewModel) {
     val currentDate: String = sdf.format(Date())
     BaseAppTheme {
         Scaffold(topBar = {
-            TopAppBar(title = { Text(text = "Dinero fisico") }, navigationIcon = {
-                IconButton(
-                    onClick = {
-                        navController.navigate("dineronotas")
-                    },
-
-                    ) {
-                    Icon(Icons.Filled.ArrowBack, contentDescription = null)
-                }
-            })
+            TopAppBar(title = { Text(text = "Reporte") })
         }, content = {
             Column {
                 Text(
                     text = "Dinero Notas total $$dineroNotas",
                     modifier = Modifier.padding(4.dp),
-                    fontSize = 40.sp
+                    fontSize = 30.sp,
                 )
                 Text(
                     text = "Dinero Fisico total $$dineroFisico",
                     modifier = Modifier.padding(4.dp),
-                    fontSize = 40.sp
+                    fontSize = 30.sp,
+                    fontStyle = FontStyle.Italic
                 )
                 Text(
                     text = "Dinero Total del dia: $explicito $$dineroTotal",
                     color = colors,
                     textDecoration = TextDecoration.Underline,
                     modifier = Modifier.padding(4.dp),
-                    fontSize = 40.sp
+                    fontSize = 40.sp,
+                    textAlign = TextAlign.Center
                 )
             }
         }, bottomBar = {

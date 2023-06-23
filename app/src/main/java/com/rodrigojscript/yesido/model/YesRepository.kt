@@ -132,7 +132,7 @@ class YesRepository(application: Application) {
         } else if (dineroT < 0.0) {
             Color.Red
         } else {
-            Color.Yellow
+            Color(0xff0034e1)
         }
         explicito = if (dineroT > 0.1) {
             "Sobran"

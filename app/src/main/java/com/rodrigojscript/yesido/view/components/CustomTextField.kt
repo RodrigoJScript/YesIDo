@@ -35,7 +35,7 @@ fun CustomTextField(
     index: Int,
     onChange: onChange,
 ) {
-    Row {
+    Row(modifier = Modifier.fillMaxWidth()) {
         Box(
             modifier = Modifier
                 .fillMaxWidth(0.5f)
@@ -64,12 +64,10 @@ fun CustomTextField(
             modifier = Modifier
                 .padding(start = 20.dp)
                 .align(Alignment.CenterVertically)
-                .fillMaxHeight()
-                .widthIn(min = 60.dp)
-                .wrapContentWidth(align = CenterHorizontally),
-            textAlign = TextAlign.Center,
+                .fillMaxHeight(),
+            textAlign = TextAlign.Right,
             color = textLight,
-            fontSize = 16.sp
+            fontSize = 16.sp,
         )
     }
 }

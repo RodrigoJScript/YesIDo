@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.modifier.modifierLocalConsumer
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -114,7 +115,8 @@ fun DineroNotas(navController: NavController, yesViewModel: YesViewModel) {
                         Text(
                             modifier = Modifier.padding(bottom = 4.dp),
                             text = "Dinero Notas: $dineroTotalNotas",
-                            fontSize = 40.sp
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 30.sp
                         )
                         coroutineScope.launch(Dispatchers.IO) {
                             dineroNotas = list.sumOf { it.dineroNota }

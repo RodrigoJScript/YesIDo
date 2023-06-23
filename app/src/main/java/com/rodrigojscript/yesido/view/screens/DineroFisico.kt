@@ -12,6 +12,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -47,7 +48,7 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
                     .fillMaxSize()
                     .padding(
                         innerPaddings
-                    )
+                    ), horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 item {
                     for (i in 0..10) {
@@ -111,7 +112,8 @@ fun DineroFisico(navController: NavController, yesViewModel: YesViewModel) {
                     Text(
                         modifier = Modifier.padding(bottom = 4.dp, start = 4.dp),
                         text = "Dinero Fisico: $$dineroFisicoTotal",
-                        fontSize = 40.sp
+                        fontSize = 30.sp,
+                        fontWeight = FontWeight.Bold
                     )
                 }
             }

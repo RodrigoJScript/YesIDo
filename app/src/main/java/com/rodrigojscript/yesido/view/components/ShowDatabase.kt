@@ -10,6 +10,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rodrigojscript.yesido.model.database.DineroEnNotas
@@ -54,7 +56,7 @@ fun CustomCardCasita(item: SaldoDia, yesViewModel: YesViewModel) {
     }
     Card(
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxWidth(), elevation = 4.dp
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -83,14 +85,16 @@ fun CustomCardCasita(item: SaldoDia, yesViewModel: YesViewModel) {
                 Text(
                     text = "Dinero fisico: $${item.dineroFisico}",
                     style = MaterialTheme.typography.caption,
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
+                    fontStyle = FontStyle.Italic
                 )
             }
             Text(
                 modifier = Modifier.padding(bottom = 4.dp),
                 text = "Balance: $${item.dineroTotal}",
                 style = MaterialTheme.typography.caption,
-                fontSize = 16.sp
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold
             )
             Spacer(modifier = Modifier.width(10.dp))
             IconButton(onClick = { openDialog.value = true }) {
@@ -106,7 +110,7 @@ fun CustomCardNotas(item: DineroEnNotas, yesViewModel: YesViewModel) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 10.dp, end = 10.dp, top = 5.dp, bottom = 5.dp)
+            .padding(start = 10.dp, end = 10.dp, top = 5.dp, bottom = 5.dp), elevation = 4.dp
     ) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
