@@ -1,13 +1,18 @@
 package com.rodrigojscript.yesido.model
 
 import android.app.Application
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.LiveData
+import com.patrykandpatrick.vico.core.entry.ChartEntryModel
+import com.patrykandpatrick.vico.core.entry.entryModelOf
 import com.rodrigojscript.yesido.model.database.DineroEnNotas
 import com.rodrigojscript.yesido.model.database.SaldoDia
 import com.rodrigojscript.yesido.model.database.YesDao
 import com.rodrigojscript.yesido.model.database.YesDatabase
 import com.rodrigojscript.yesido.view.screens.*
+import com.rodrigojscript.yesido.viewmodel.YesViewModel
+
 
 /**
  * Yes repository: Repositorio para conectar viewmodel con model
@@ -18,7 +23,6 @@ import com.rodrigojscript.yesido.view.screens.*
  */
 class YesRepository(application: Application) {
     private var yesDao: YesDao
-
 
     init {
         val database = YesDatabase.getInstance(application)
@@ -141,5 +145,28 @@ class YesRepository(application: Application) {
         } else {
             "Todo Cuadra"
         }
+    }
+
+     fun getDataForChart(list: List<SaldoDia>): ChartEntryModel {
+        val lastSevenDineroTotal: List<Float> = list.takeLast(7).map { it.dineroTotal.toFloat() }
+        val day1DineroTotal: Float = lastSevenDineroTotal.getOrNull(0) ?: 0f
+        val day2DineroTotal: Float = lastSevenDineroTotal.getOrNull(1) ?: 0f
+        val day3DineroTotal: Float = lastSevenDineroTotal.getOrNull(2) ?: 0f
+        val day4DineroTotal: Float = lastSevenDineroTotal.getOrNull(3) ?: 0f
+        val day5DineroTotal: Float = lastSevenDineroTotal.getOrNull(4) ?: 0f
+        val day6DineroTotal: Float = lastSevenDineroTotal.getOrNull(5) ?: 0f
+        val day7DineroTotal: Float = lastSevenDineroTotal.getOrNull(6) ?: 0f
+
+        val chartEntryModel = entryModelOf(
+            day1DineroTotal,
+            day2DineroTotal,
+            day3DineroTotal,
+            day4DineroTotal,
+            day5DineroTotal,
+            day6DineroTotal,
+            day7DineroTotal
+        )
+
+        return chartEntryModel
     }
 }

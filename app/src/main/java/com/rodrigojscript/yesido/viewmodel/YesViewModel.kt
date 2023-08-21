@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.patrykandpatrick.vico.core.entry.ChartEntryModel
 import com.rodrigojscript.yesido.model.YesRepository
 import com.rodrigojscript.yesido.model.database.DineroEnNotas
 import com.rodrigojscript.yesido.model.database.SaldoDia
@@ -35,7 +36,7 @@ class YesViewModel(application: Application) : AndroidViewModel(application) {
         return yesRepository.readAllNotas
     }
 
-    fun clear(){
+    fun clear() {
         viewModelScope.launch(Dispatchers.IO) {
             yesRepository.clear()
         }
@@ -68,6 +69,7 @@ class YesViewModel(application: Application) : AndroidViewModel(application) {
             yesRepository.deleteSaldo(saldoDia)
         }
     }
+
     fun deleteNota(dineroEnNotas: DineroEnNotas) {
         viewModelScope.launch(Dispatchers.IO) {
             yesRepository.deleteNota(dineroEnNotas)
@@ -124,5 +126,9 @@ class YesViewModel(application: Application) : AndroidViewModel(application) {
      */
     fun explicidad(dineroT: Double) {
         yesRepository.explicidad(dineroT)
+    }
+
+     fun getLastSevenDayDineroTotal(list: List<SaldoDia>): ChartEntryModel {
+        return yesRepository.getDataForChart(list = list)
     }
 }

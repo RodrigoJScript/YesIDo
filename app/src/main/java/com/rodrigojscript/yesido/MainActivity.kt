@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.rodrigojscript.yesido.view.screens.*
+import com.rodrigojscript.yesido.view.theme.BaseAppTheme
 import com.rodrigojscript.yesido.viewmodel.YesViewModel
 
 /**
@@ -20,7 +21,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         val yesViewModel: YesViewModel = ViewModelProvider(this)[YesViewModel::class.java]
         setContent {
-            NavGraph()
+            BaseAppTheme {
+                NavGraph()
+            }
         }
     }
 }
